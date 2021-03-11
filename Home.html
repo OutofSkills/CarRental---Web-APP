@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--HEAD-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Home</title>
+</head>
+
+<!--BODY-->
+<body>
+ <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light" style="background-color: #548b97; margin-bottom: 0">
+    <div class="container">
+        <!--Navigation bar logo-->
+      <a class="navbar-brand" href="#" >
+        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental - Front\Pictures\car_rent_logo.jpg" alt="" width="40" height="40" class="d-inline-block align-top">
+        <span class="text" style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car Rental</span>
+      </a>
+
+      <!--NavBar items-->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
+          <li class="nav-item active">
+            <a class="nav-link" href="# ">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" >Cars</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" >Locations</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" >Contact Us</a>
+          </li>
+        </ul>
+          
+        <!--Login/Welcome-->
+        <div class="nav-item dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: #000000;">User</a>
+            <div class="dropdown-menu">
+                <a href="Profile.html" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
+                <a href="#" class="dropdown-item"><img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental - Front\SVGs\icons.svg"> Reservations</a>
+                <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+  </nav>
+  
+  <!--Image carousel-->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+  
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner ">
+      <div class="item active">
+        <img src="Pictures\Cars\ford_fiesta.jpg" alt="Ford Fiesta" class="img-fluid" alt="Responsive image" width="700" height="900" style="margin: auto">
+        <div class="carousel-caption">
+          <h3>Ford Fiesta</h3>
+          <p>For 2-4 people</p>
+        </div>
+      </div>
+  
+      <div class="item" >
+        <img src="Pictures\Cars\Mini_cooper.jpg" alt="Mini Cooper" class="img-fluid" alt="Responsive image" width="700" height="900" style="margin: auto">
+        <div class="carousel-caption">
+          <h3>Mini Cooper</h3>
+          <p>For 2 people</p>
+        </div>
+      </div>
+  
+      <div class="item">
+        <img src="Pictures\Cars\tesla_cybertruck.jpg" alt="Tesla Cybertruck" class="img-fluid" alt="Responsive image" width="700" height="900" style="margin: auto">
+        <div class="carousel-caption">
+          <h3>Tesla Cybertruck</h3>
+          <p>For people with style of future.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="Pictures\Cars\Tesla_Mod_x.jpg" alt="Tesla Model X" class="img-fluid" alt="Responsive image" width="700" height="900" style="margin: auto">
+        <div class="carousel-caption">
+          <h3>Tesla Model X</h3>
+          <p>For 2-4 people. Choose confort over poluation.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <!--Rent articles-->
+  <div class="jumbotron row">
+      <div class="col-md-4">
+          <h2>Getting started</h2>
+          <p>
+            Looking to rent a car for a trip? No problem! 
+            We offers easy and convenient car rentals between many of its locations in Romania.
+            Choose from a great selection of vehicles, including economy, full-size sedans, SUVs, mini, and pickup trucks.
+          </p>
+          <p><a class="btn btn-default" href="">Take a look &raquo;</a></p>
+      </div>
+    <div class="col-md-4">
+        <h2>New user</h2>
+        <p>Create an account where you can keep track of you latest boockings.</p>
+        <p><a class="btn btn-default" href="">Sign in &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Offers</h2>
+        <p>Save on car rentals when you plan your trip with budget rental cars. 
+          Enjoy confort with luxury rental cars.
+          Find best offer for you.
+        </p>
+        <p><a class="btn btn-default" href="">Rent now &raquo;</a></p>
+    </div>
+</div>
+</body>
+
+</html>
