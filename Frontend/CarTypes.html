@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Font Awesome CSS -->
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+  <!-- jQuery -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--JavaScript-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--Local CSS-->
+  <link rel="stylesheet" href="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\CSS\CarTypesStyle.css">
+  <title>Car Types</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light"
+    style="background-color: #548b97; margin-bottom: 0">
+    <div class="container-fluid">
+      <!--Navigation bar logo-->
+      <a class="navbar-brand" href="#">
+        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\car_rent_logo.jpg" alt="" width="40"
+          height="40" class="d-inline-block align-top">
+        <span class="text"
+          style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car Rental</span>
+      </a>
+
+      <!--NavBar items-->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
+        <li class="nav-item active">
+          <a class="nav-link" href="# ">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Cars</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+
+      <!--Login/Welcome-->
+      <div class="nav-item dropdown" style="padding-right: 7%;">
+        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: #000000;">User</a>
+        <div class="dropdown-menu">
+          <a href="Profile.html" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
+          <a href="#" class="dropdown-item"><img
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
+            Reservations</a>
+          <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--About Car Types-->
+  <div class="jumbotron text-center">
+    <h1>Don't dream it, drive it!</h1>
+    <p>Going with friend or family in a trip? Or you want to enjoy a luxury trip by yourself?</p>
+    <p style="color: chocolate;">Pick the suitable car type!</p>
+  </div>
+
+  <!--List of vechicle types-->
+  <div class="container-fluid">
+    <div class="row justify-content-md-center">
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\economy.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Economy</p>
+            <p class="card-text">
+              Good for city driving and suitable for four people for shorter trips,
+              and two or three people for longer trips.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 (3 adults + 2 children)</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 1 large suitcase + 1 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Mini.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Mini</p>
+            <p class="card-text">
+              Suitable for three or four people for very short trips.
+              For longer trips, they’re more suitable for one or two people. Minis are often (but not necessarily)
+              hatchbacks.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 4 (2 adults + 2 children)</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 small suitcases</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Compact.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Compact</p>
+            <p class="card-text">Medium-sized, often (but not always) hatchback, and are good for four people for a
+              shorter trip
+              - and two or three people for a longer trip. </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 (3 adults + 2 children)</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 1 large suitcase + 1 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Intermediate.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Intermediate</p>
+            <p class="card-text">
+              Bigger than ‘compact’ cars, and smaller than ‘standard’ cars.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 (4 adults + 1 children)</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 large suitcase + 1 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Convertible.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Convertible</p>
+            <p class="card-text">Cars with a soft roof that you can put up if the weather isn’t great or down if you
+              want to enjoy the breeze and the sun.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 2-4 adults depending on size
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 1-2 large suitcases</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Suv.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">SUV</p>
+            <p class="card-text">
+              Good-sized vehicles with a rugged look, set higher off the road than normal cars.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 adults</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 large suitcase</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Standard.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Standard</p>
+            <p class="card-text">
+              Larger sedan, provides more room for passengers and can fit an additional bag in the trunk compared to an
+              intermediate car.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 adults</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 large suitcase + 1 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Full-sized.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Full-size</p>
+            <p class="card-text">
+              More passenger room and luggage space than a smaller car offers.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 adults</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 large suitcase + 2 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card" style="width: 30rem;">
+          <a href="#"><img class="card-img-top"
+              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Luxury.jpg"
+              alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Luxury</p>
+            <p class="card-text">
+              Great for travelling in style. These are cars made by high-end brands with luxury features: a sleek look,
+              comfy seats,
+              plush interior and powerful engine.
+            </p>
+            <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 5 adults</p>
+            <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 2 large suitcase + 3 small suitcase
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-md-center">
+        <div class="col-md">
+          <div class="card" style="width: 30rem;">
+            <a href="#"><img class="card-img-top"
+                src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Family.jpg"
+                alt="Card image cap"></a>
+            <div class="card-body">
+              <p class="card-text" style="color: cadetblue;font-weight: bold;font-size: 16pt;">Luxury</p>
+              <p class="card-text">
+                Large cars, often with more headroom and luggage space than most cars.
+              </p>
+              <p class="card-text"><span style="font-weight: bold;">Number of people:</span> 9 or 7, depending on car
+              </p>
+              <p class="card-text"><span style="font-weight: bold;">Luggage:</span> 9 or 7, depending on car</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

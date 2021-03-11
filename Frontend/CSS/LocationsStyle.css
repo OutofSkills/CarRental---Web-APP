@@ -9,3 +9,6 @@ locationsBorder{
     border-style: inset; 
     border-width: 1px;
 }
+body { 
+    padding-top: 60px; 
+}
