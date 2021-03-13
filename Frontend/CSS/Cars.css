@@ -21,3 +21,13 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+/*Price*/
+.pricing .card-price .period {
+    font-size: 1.8rem;
+  }
+
+.pricing .card-price {
+    font-size: 3rem;
+    margin: 0;
+    color: rgb(62, 82, 82);
+  }
