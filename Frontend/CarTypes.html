@@ -5,64 +5,80 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width-device-width, initial-scale=1.0" />
   <!--Bootstrap-->
+  <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <!-- Font Awesome CSS -->
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
   <!-- jQuery -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!--JavaScript-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
   <!--Local CSS-->
   <link rel="stylesheet" href="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\CSS\CarTypesStyle.css">
   <title>Car Types</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light"
-    style="background-color: #548b97; margin-bottom: 0">
+  <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light" style="background-color: #548b97;">
     <div class="container-fluid">
-      <!--Navigation bar logo-->
-      <a class="navbar-brand" href="Home.html">
-        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg" alt=""
-          width="40" height="40" class="d-inline-block align-top">
-        <span class="text"
-          style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car Rental</span>
-      </a>
+        <!--Navigation bar logo-->
+        <a class="navbar-brand" href="Home.html">
+            <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg"
+                alt="" width="40" height="40" class="d-inline-block align-top">
+            <span class="text"
+                style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car
+                Rental</span>
+        </a>
 
-      <!--NavBar items-->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
-        <li class="nav-item active">
-          <a class="nav-link" href="Home.html">Home</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="Locations.html">Locations</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">About Us</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Contact Us</a>
-        </li>
-      </ul>
+        <!--NavBar items-->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
+            <li class="nav-item active">
+                <a class="nav-link" href="Home.html">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="Locations.html">Locations</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Contact Us</a>
+            </li>
+        </ul>
 
-      <!--Login/Welcome-->
-      <div class="nav-item dropdown" style="padding-right: 7%;">
-        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: #000000;">User</a>
-        <div class="dropdown-menu">
-          <a href="Profile.html" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
-          <a href="#" class="dropdown-item"><img
-              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
-            Reservations</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+        <!--Login/Welcome-->
+        <div class="nav-item dropdown" style="padding-right: 7%;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                           <span>User</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><img
+                                        src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
+                                    Reservations</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-  </nav>
+</nav>
 
   <!--About Car Types-->
   <div class="jumbotron text-center">
@@ -72,10 +88,10 @@
   </div>
 
   <!--List of vechicle types-->
-  <div class="container-fluid">
-    <div class="row justify-content-md-center" style="gap:5%">
+  <div class="container-fluid" style="padding-left: 5%;">
+    <div class="row">
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\economy.jpg"
               alt="Card image cap"></a>
@@ -93,7 +109,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Mini.jpg"
               alt="Card image cap"></a>
@@ -110,7 +126,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Compact.jpg"
               alt="Card image cap"></a>
@@ -128,9 +144,9 @@
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center" style="gap:5%">
+    <div class="row">
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Intermediate.jpg"
               alt="Card image cap"></a>
@@ -147,7 +163,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Convertible.jpg"
               alt="Card image cap"></a>
@@ -164,7 +180,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Suv.jpg"
               alt="Card image cap"></a>
@@ -180,9 +196,9 @@
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center" style="gap:5%">
+    <div class="row">
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Standard.jpg"
               alt="Card image cap"></a>
@@ -200,7 +216,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="#"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Full-sized.jpg"
               alt="Card image cap"></a>
@@ -217,7 +233,7 @@
         </div>
       </div>
       <div class="col-md d-flex align-items-stretch">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 18rem;">
           <a href="Cars.html"><img class="card-img-top"
               src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Luxury.jpg"
               alt="Card image cap"></a>
@@ -236,9 +252,9 @@
         </div>
       </div>
       <br>
-      <div class="row justify-content-md-center " style="gap:5%">
+      <div class="row">
         <div class="col-md d-flex align-items-stretch">
-          <div class="card" style="width: 30rem;">
+          <div class="card" style="width:18rem;">
             <a href="#"><img class="card-img-top"
                 src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\CarTypes\Family.jpg"
                 alt="Card image cap"></a>

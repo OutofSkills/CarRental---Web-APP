@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--Bootstrap-->
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	<!-- Font Awesome CSS -->
@@ -26,23 +25,19 @@
 
 <body>
 	<!--Navigation bar-->
-	<nav class="navbar navbar-expand-md navbar-fixed-top navbar-light"
-		style="background-color: #548b97; margin-bottom: 0">
+	<nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light" style="background-color: #548b97;">
 		<div class="container-fluid">
 			<!--Navigation bar logo-->
 			<a class="navbar-brand" href="Home.html">
-				<img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg" alt=""
-					width="40" height="40" class="d-inline-block align-top">
+				<img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg"
+					alt="" width="40" height="40" class="d-inline-block align-top">
 				<span class="text"
 					style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car
 					Rental</span>
 			</a>
-
+	
 			<!--NavBar items-->
-			<ul class="navbar-nav mr-auto mb-2 mb-lg-0" style="font-weight: bold;">
-				<li class="nav-item active">
-					<a class="nav-link " href="Home.html">Home</a>
-				</li>
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
 				<li class="nav-item active">
 					<a class="nav-link" href="CarTypes.html">Cars</a>
 				</li>
@@ -56,18 +51,32 @@
 					<a class="nav-link" href="#">Contact Us</a>
 				</li>
 			</ul>
-
+	
 			<!--Login/Welcome-->
 			<div class="nav-item dropdown" style="padding-right: 7%;">
-				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: #000000;">User</a>
-				<div class="dropdown-menu">
-					<a href="Profile.html" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
-					<a href="#" class="dropdown-item"><img
-							src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
-						Reservations</a>
-					<a href="Settings.html" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-					<div class="dropdown-divider"></div>
-					<a href="Home.html" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+							   <span>User</span>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+								<li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+								<li><a class="dropdown-item" href="#"><img
+											src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
+										Reservations</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+								<div class="dropdown-divider"></div>
+								<li><a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -76,7 +85,7 @@
 
 	<!--User Profile-->
 	<div class="container">
-		<div class="row gutters">
+		<div class="row gx-5 gy-3">
 			<!--User picture card-->
 			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 				<div class="card h-100">
@@ -100,7 +109,7 @@
 			<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 				<div class="card h-100">
 					<div class="card-body">
-						<div class="row gutters">
+						<div class="row gx-5 gy-3">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<h6 class="mb-2 text-primary">Personal Details</h6>
 							</div>
@@ -136,7 +145,7 @@
 							</div>
 						</div>
 						<!--User Adress-->
-						<div class="row gutters">
+						<div class="row gx-5 gy-3">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<h6 class="mt-3 mb-2 text-primary">Address</h6>
 							</div>
@@ -169,10 +178,11 @@
 								</div>
 							</div>
 						</div>
+						<br>
 						<!--Submit/Cancel buttons-->
-						<div class="row gutters">
+						<div class="row gx-5 gy-3">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<div class="text-right">
+								<div class="text-end">
 									<button type="button" id="submit" name="submit"
 										class="btn btn-secondary">Cancel</button>
 									<button type="button" id="submit" name="submit"

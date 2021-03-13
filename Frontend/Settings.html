@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Bootstrap-->
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <!-- Font Awesome CSS -->
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
   <!--JQUERY-->
@@ -28,22 +29,19 @@
 
 <body>
   <!--Navigation bar-->
-  <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light"
-    style="background-color: #548b97; margin-bottom: 0">
+  <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light" style="background-color: #548b97;">
     <div class="container-fluid">
       <!--Navigation bar logo-->
       <a class="navbar-brand" href="Home.html">
-        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg" alt="" width="40"
-          height="40" class="d-inline-block align-top">
+        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg" alt=""
+          width="40" height="40" class="d-inline-block align-top">
         <span class="text"
-          style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car Rental</span>
+          style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car
+          Rental</span>
       </a>
 
       <!--NavBar items-->
-      <ul class="navbar-nav mr-auto mb-2 mb-lg-0" style="font-weight: bold;">
-        <li class="nav-item active">
-          <a class="nav-link" href="Home.html">Home</a>
-        </li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
         <li class="nav-item active">
           <a class="nav-link" href="CarTypes.html">Cars</a>
         </li>
@@ -60,14 +58,28 @@
 
       <!--Login/Welcome-->
       <div class="nav-item dropdown" style="padding-right: 7%;">
-        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: #000000;">User</a>
-        <div class="dropdown-menu">
-          <a href="Profile.html" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
-          <a href="#" class="dropdown-item"><img
-              src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg"> Reservations</a>
-          <a href="Settings.html" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-          <div class="dropdown-divider"></div>
-          <a href="Home.html" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+          aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span>User</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#"><img
+                      src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
+                    Reservations</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                <div class="dropdown-divider"></div>
+                <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -75,16 +87,17 @@
   <br>
 
   <!--User Settings-->
-  <div class="container-fluid">
-    <div class="row gutters">
+  <div class="container-fluid" style="padding-left: 12%;padding-top: 5%;">
+    <div class="row gx-3 gy-3">
       <!--User picture card-->
-      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
         <div class="card h-100">
           <div class="card-body">
             <div class="account-settings">
               <div class="user-profile">
                 <div class="user-avatar">
-                  <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Avatars\User_avatar_V2.png" alt="User">
+                  <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Avatars\User_avatar_V2.png"
+                    alt="User">
                 </div>
                 <h5 class="user-name">User name</h5>
                 <h6 class="user-email">user@mail.com</h6>
@@ -97,33 +110,44 @@
         </div>
       </div>
       <!--Settings card-->
-      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+      <div class="col-md-6">
         <div class="card h-100">
           <div class="card-body">
-            <form>
-              <!--Email-->
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="Email" placeholder="Enter email" required="true">
+                </div>
               </div>
-              <!--Password-->
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <br>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="Password" placeholder="Enter password"
+                    required="true">
+                </div>
               </div>
-              <!--RepeatPassword-->
-              <div class="form-group">
-                <label for="passwordRepeat">Repeat Password</label>
-                <input type="password" class="form-control" id="passwordRepeat"
-                  placeholder="Enter the password one more time">
+            </div>
+            <br>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="confirmPass">Confirm password</label>
+                  <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password"
+                    required="true">
+                </div>
               </div>
-            </form>
+            </div>
+            <br>
             <!--Submit/Cancel buttons-->
-            <div class="row gutters">
+            <div class="row gy-5">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="text-right">
-                  <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                  <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                <div class="text-center">
+                  <button type="button" id="cancel" name="submit" class="btn btn-secondary">Cancel</button>
+                  <button type="button" id="update" name="submit" class="btn btn-primary">Update</button>
                 </div>
               </div>
             </div>
@@ -133,4 +157,5 @@
     </div>
   </div>
 </body>
+
 </html>

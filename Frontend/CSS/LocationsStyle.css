@@ -9,6 +9,18 @@ locationsBorder{
     border-style: inset; 
     border-width: 1px;
 }
-body { 
-    padding-top: 60px; 
-}
+.jumbotron {
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    background-color:#e9ecef;
+    border-radius: .3rem;  
+    height: 250px;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(75, 141, 150);
+  }
+  a:hover
+  {
+      color: darkgray;
+  }
