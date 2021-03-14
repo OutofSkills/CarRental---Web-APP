@@ -70,11 +70,11 @@
                 <span>User</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="Profile.html"><i class="fa fa-user"></i> Profile</a></li>
                 <li><a class="dropdown-item" href="#"><img
                       src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
                     Reservations</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                <li><a class="dropdown-item" href="Settings.html"><i class="fa fa-sliders"></i> Settings</a></li>
                 <div class="dropdown-divider"></div>
                 <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
@@ -114,44 +114,46 @@
         <div class="card h-100">
           <div class="card-body">
             <div class="card-title" style="font-size: 16pt;">Settings</div>
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="Email" placeholder="Enter email" required="true">
+            <form>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="Email" placeholder="Enter email" required="true">
+                  </div>
                 </div>
               </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="Password" placeholder="Enter password"
-                    required="true">
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="Password" placeholder="Enter password"
+                      required="true">
+                  </div>
                 </div>
               </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="confirmPass">Confirm password</label>
-                  <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password"
-                    required="true">
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="confirmPass">Confirm password</label>
+                    <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password"
+                      required="true">
+                  </div>
                 </div>
               </div>
-            </div>
-            <br>
-            <!--Submit/Cancel buttons-->
-            <div class="row gy-5">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="text-center">
-                  <button type="button" id="cancel" name="submit" class="btn btn-secondary">Cancel</button>
-                  <button type="button" id="update" name="submit" class="btn btn-primary">Update</button>
+              <br>
+              <!--Submit/Cancel buttons-->
+              <div class="row gy-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div class="text-center">
+                    <button type="button" id="cancel" name="Cancel" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" id="update" name="submit" class="btn btn-primary">Update</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
