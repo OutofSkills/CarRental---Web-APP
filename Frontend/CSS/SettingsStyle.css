@@ -49,3 +49,8 @@ body {
     border: 0;
     margin-bottom: 1rem;
 }
+.card-title{
+    margin: 0 0 15px 0;
+    color: #007ae1;
+    font-size: 16pt;
+}
