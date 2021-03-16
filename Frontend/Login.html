@@ -50,7 +50,7 @@
                     <a class="nav-link" href="#">About Us</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
                 </li>
             </ul>
         </div>
@@ -142,6 +142,38 @@
             Cojocaru Ion
         </div>
     </footer>
+
+    <!--Modal contact us container-->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel" style="font-size: 16pt;font-weight: bold;">Contact Us
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Contact details list-->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Email: </strong>
+                            <a href="mailto:kojocaru.ivan@gmail.com" style="text-decoration: none;">&nbsp;
+                                kojocaru.ivan@gmail.com</a>
+                        </li>
+                        <li class="list-group-item"><strong> Phone:</strong><span>&nbsp; 0-785-423-572</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Address:</strong>
+                            <span>&nbsp; Craiova, Romania</span>
+                        </li>
+                    </ul><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
