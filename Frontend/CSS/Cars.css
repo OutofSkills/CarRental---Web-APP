@@ -34,4 +34,8 @@
     background-color:#e9ecef;
     border-radius: .3rem;  
   }
- 
+ .card-footer{
+  background:transparent;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3C000000,endColorstr=#3C000000); 
+  zoom: 1;
+ }
