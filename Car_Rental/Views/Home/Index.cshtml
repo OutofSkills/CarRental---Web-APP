@@ -1,8 +1,127 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Car_Rental.Models.Car>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<!--HEAD-->
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <title>Home</title>
+</head>
+
+<!--BODY-->
+<body class="d-flex flex-column min-vh-100">
+    <!--Image carousel-->
+    <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @for(int i = 0; i < Model.Count(); i++)
+            {
+                @if (i == 0)
+                {
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" class="active"
+                            aria-current="true" aria-label="@i"></button>
+                }
+                else
+                {
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" aria-label="@i"></button>
+                }
+            }
+        </div>
+        <div class="carousel-inner">
+            @foreach (var car in Model)
+            {
+                <div class="carousel-item @(car == Model.First()? "active" : "")">
+                    <img src=@Html.DisplayFor(modelItem => car.PictureURL) alt="@Html.DisplayFor(modelItem => car.Model)" class="d-block img-fluid" height="900" width="700"
+                         style="margin: auto;">
+                    <div class="carousel-caption d-none d-md-block" style="color: rgb(255, 255, 255);">
+                        <h3>@Html.DisplayFor(modelItem => car.Model)</h3>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!--Rent articles-->
+    <div class="container-fluid">
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-4">
+                <h2>Getting started</h2>
+                <p>
+                    Looking to rent a car for a trip? No problem!
+                    We offers easy and convenient car rentals between many of its locations in Romania.
+                    Choose from a great selection of vehicles, including economy, Full-size Sedans, SUVs, Mini, and Pickup Trucks.
+                </p>
+                <a href="Cars.html"><button type="button" class="btn btn-outline-dark">Take a look &raquo;</button></a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>New user</h2>
+                <p>Create an account where you can keep track of you latest boockings.</p>
+                <a href="Login.html"><button type="button" class="btn btn-outline-dark">Sign in &raquo;</button></a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Offers</h2>
+                <p>
+                    Save on car rentals when you plan your trip with budget rental cars.
+                    Enjoy confort with luxury rental cars.
+                    Find best offer for you.
+                </p>
+                <p>
+                    <a href="CarTypes.html"><button type="button" class="btn btn-outline-dark">Rent now &raquo;</button></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Modal contact us container-->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel" style="font-size: 16pt;font-weight: bold;">
+                        Contact Us
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Contact details list-->
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Email: </strong>
+                            <a href="mailto:kojocaru.ivan@gmail.com" style="text-decoration: none;">&nbsp; kojocaru.ivan@gmail.com</a>
+                        </li>
+                        <li class="list-group-item">
+                            <strong> Phone:</strong><span>&nbsp; 0-785-423-572</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Address:</strong>
+                            <span>&nbsp; Craiova, Romania</span>
+                        </li>
+                    </ul><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
