@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Car_Rental.Models;
+using Car_Rental.Services.CarCategoryServices;
+using Car_Rental.Services.CarServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,8 @@ namespace Car_Rental
         {
             services.AddControllersWithViews();
             services.AddDbContext<CarRentalContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<ICarsRepository, CarsRepository>();
+            services.AddTransient<ICarCategoryRepository, CarCategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

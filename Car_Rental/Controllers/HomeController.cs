@@ -1,4 +1,5 @@
 ﻿using Car_Rental.Models;
+using Car_Rental.Services.CarServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,20 +12,23 @@ namespace Car_Rental.Controllers
     public class HomeController : Controller
     {
 
-        private readonly CarRentalContext _context;
+        private readonly ICarsRepository _cars;
 
-        public HomeController(CarRentalContext context)
+        public HomeController(ICarsRepository cars)
         {
-            _context = context;
+            _cars = cars;
         }
 
         public async Task<IActionResult> Index()
         {
+            var homeCarList = await _cars.GetCarsAsync();
+
             int[] id = { 1, 2, 3, 4 };
-            var homeCarList = await _context.Cars.Where(car => car.CarID == id[0] ||
-                                                               car.CarID == id[1] ||
-                                                               car.CarID == id[2] ||
-                                                               car.CarID == id[3]).ToListAsync();
+            homeCarList.Where(car => car.CarID == id[0] ||
+                                     car.CarID == id[1] ||
+                                     car.CarID == id[2] ||
+                                     car.CarID == id[3]).ToList();
+
             return View(homeCarList);
         }
     }

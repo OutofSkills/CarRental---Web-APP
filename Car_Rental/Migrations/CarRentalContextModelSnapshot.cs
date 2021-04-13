@@ -122,6 +122,9 @@ namespace Car_Rental.Migrations
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price_per_Day")
                         .HasColumnType("money");
 
