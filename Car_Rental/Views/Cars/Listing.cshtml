@@ -1,0 +1,880 @@
+﻿@model IEnumerable<Car>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <!--Bootstrap-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <!--Local CSS-->
+    <link rel="stylesheet" href="\css\Cars.css">
+    <title>Cars</title>
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!--About Cars-->
+    <div class="jumbotron text-center">
+        <div class="container-fluid">
+            <h1 style="color: rgb(0, 0, 0);text-shadow: 2px 2px 4px #374644;">Luxury category</h1>
+            <p>
+                <span style="font-weight: bold;">Style, spaces, confort?</span> Experience the joy of driving premium
+                cars.
+            </p><br>
+
+            <!--Search field-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md"></div>
+                    <div class="col-md-4">
+                        <form class="d-flex" style="display: flex; justify-content: end;">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <div class="col-md"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--List of vechicle types-->
+    <div class="container-fluid">
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                if (i > 0 && i % 4 == 0)
+                {
+                @:</div><div class="row">
+                    <br />
+                    // close and start new row
+                }
+
+                <!--Card Code-->
+                <div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src=@Html.DisplayFor(modelItem => Model.ElementAt(i).PictureURL)
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Model)</span>
+                            </p>
+                            <br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>7</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).TransmisionType)</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).FuelType)</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            @if (Model.ElementAt(i).ClimateControll)
+                                            {
+                                                <span>AC</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Price-->
+                                <section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!--Rating-->
+                        <div id="car-container">
+                            <!--car rating-->
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+
+            <!--<div class="row">-->
+                <!--BMW-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\BMW-X7.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>BMW-X7</span>
+                            </p>
+                            <br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>7</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+
+                        <!--Rating-->
+                        <!--<div id="car-container">-->
+                            <!--car rating-->
+                        <!--</div>
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--Mustang-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\Ford-Mustang.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Ford Mustang</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_1" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--E-Class-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\Mercedes-Benz-E-Class.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Mercedes Benz E-Class</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_2" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--G-Class-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\mercedes-g-class.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Mercedes Benz G-Class</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_3" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">-->
+                <!--Rolls-Roys-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\rolls-royce-fantom.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Rolls Roys Phantom</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_4" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--Tesla-Model-S-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\tesla-model-s.png"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Tesla Model S</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Electric</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_5" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--Tesla-Roadster-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\tesla-roadster.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Tesla Roadster</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Electric</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_6" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--Audi-RS-7-->
+                <!--<div class="col-md d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Cars\Luxury\Audi-RS-7.jpg"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span>Audi RS 7</span>
+                            </p><br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>4</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>Automatic</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>Petrol</span>
+                                        </div>
+                                        <div class="col-md" style="padding-top: 3%;">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                 alt="">
+                                            <span>AC</span>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <!--Price-->
+                                <!--<section class="pricing py-5">
+                                    <h6 class="card-price text-center">$0<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>-->
+                        <!--Rating-->
+                        <!--<div class="car_id_7" style="font-size: 16pt; text-align: center;">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#detailsModal">
+                                        Details</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--Some space between body and footer-->
+        <br><br>
+
+        <!--Modal reservation container-->
+        <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reservationModalLabel" style="font-size: 16pt;font-weight: bold;">
+                            Book
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Modal-Form-->
+                        <form role="form">
+                            <div class="form-group row">
+                                <!--Pick-up Date and time-->
+                                <div class="form-group">
+                                    <label for="datetime-local-input" class="col col-form-label">Pick-up Date</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="datetime-local" value="yyyy-MM-dd hh:MM:ss"
+                                               id="datetime-local-input" required="true">
+                                    </div>
+                                </div>
+                                <!--Duration of the rent-->
+                                <div class="form-group">
+                                    <label for="number-input" class="col col-form-label">Rent duration</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" value="1" id="number-input"
+                                               required="true">
+                                    </div>
+                                </div>
+                                <!--Coupon code-->
+                                <div class="form-group">
+                                    <label for="couponCodeInput" class="col col-form-label">Coupon code</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" id="couponCodeInput"
+                                               aria-describedby="cuponCode">
+                                        <div id="cuponCode" class="form-text">Do you have a coupon code?</div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Book</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal car details container-->
+        <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsModalLabel" style="font-size: 16pt;font-weight: bold;">
+                            Details
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Details List-->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item ">
+                                Available at locations:
+                                <span>...</span>
+                            </li>
+                            <li class="list-group-item">
+                                Body type:<span>...</span>
+                            </li>
+                            <li class="list-group-item">
+                                Acceleration:<span>...</span>
+                            </li>
+                            <li class="list-group-item">
+                                0-100Kmph:<span>...</span>
+                            </li>
+                            <li class="list-group-item">
+                                Assembly
+                                year:<span>...</span>
+                            </li>
+                        </ul><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal contact us container-->
+        <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactModalLabel" style="font-size: 16pt;font-weight: bold;">
+                            Contact Us
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Contact details list-->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Email: </strong>
+                                <a href="mailto:kojocaru.ivan@gmail.com" style="text-decoration: none;">
+                                    &nbsp;
+                                    kojocaru.ivan@gmail.com
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <strong> Phone:</strong><span>&nbsp; 0-785-423-572</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Address:</strong>
+                                <span>&nbsp; Craiova, Romania</span>
+                            </li>
+                        </ul><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+
+<!--Local JS-->
+<script type="text/javascript"
+        src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\JavaScript\test.js"></script>
