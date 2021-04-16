@@ -18,5 +18,10 @@ namespace Car_Rental.Models
         public int Street_Numver { get; set; }
 
         public ICollection<CarLocation> CarsAtLocation { get; set; }
+
+        public Location()
+        {
+            CarsAtLocation = new HashSet<CarLocation>();
+        }
     }
 }

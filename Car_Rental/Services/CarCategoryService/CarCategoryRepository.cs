@@ -16,7 +16,7 @@ namespace Car_Rental.Services.CarCategoryServices
             _context = context;
         }
 
-        public async Task DeleteCategory(int categoryId)
+        public async Task DeleteCategory(string categoryId)
         {
             var categoryToDelete = await _context.Categories.FindAsync(categoryId);
             _context.Categories.Remove(categoryToDelete);
@@ -27,7 +27,7 @@ namespace Car_Rental.Services.CarCategoryServices
             return await _context.Categories.ToListAsync();
         }
 
-        public async Task<CarCategory> GetCategoryByIDAsync(int categoryId)
+        public async Task<CarCategory> GetCategoryByIDAsync(string categoryId)
         {
             return await _context.Categories.FindAsync(categoryId);
         }

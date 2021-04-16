@@ -22,5 +22,11 @@ namespace Car_Rental.Models
         public CarTypes Type { get; set; }
         public ICollection<CarLocation> CarLocations { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
+
+        public Car()
+        {
+            CarLocations = new HashSet<CarLocation>();
+            Reservations = new HashSet<Reservation>();
+        }
     }
 }

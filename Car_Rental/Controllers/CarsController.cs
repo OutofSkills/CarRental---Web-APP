@@ -7,16 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Car_Rental.Models;
 using Car_Rental.Services.CarServices;
+using Car_Rental.Services.CarCategoryServices;
+using Car_Rental.Services;
+using Car_Rental.Services.LocationService;
 
 namespace Car_Rental.Controllers
 {
     public class CarsController : Controller
     {
         private readonly ICarsRepository _carRepository;
+        private readonly ICarCategoryRepository _categoriesRepository;
+        private readonly ICarTypeRepository _carTypesRepository;
+        private readonly ILocationsRepository _locationsRepository;
 
-        public CarsController(ICarsRepository carRepository)
+        public CarsController(ICarsRepository carRepository, ICarCategoryRepository categoriesRepository, 
+                              ICarTypeRepository carTypesRepository, ILocationsRepository locationsRepository)
         {
             _carRepository = carRepository;
+            _categoriesRepository = categoriesRepository;
+            _carTypesRepository = carTypesRepository;
+            _locationsRepository = locationsRepository;
         }
 
         [HttpGet]
@@ -26,15 +36,79 @@ namespace Car_Rental.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var categories = await _categoriesRepository.GetCategoriesAsync();
+            var bodyTypes = await _carTypesRepository.GetBodyTypesAsync();
+            var locations = await _locationsRepository.GetLocationsAsync();
+
+            List<string> categorieNames = new List<string>();
+            List<string> typeNames = new List<string>();
+            List<string> locationNames = new List<string>();
+
+            /*get the existing categories name and body types name*/
+            foreach (var item in categories)
+                categorieNames.Add(item.Category_Name);
+            foreach (var item in bodyTypes)
+                typeNames.Add(item.Name);
+            foreach (var item in locations)
+                locationNames.Add(item.City);
+
+            ViewBag.Category_Names = categorieNames;
+            ViewBag.TypeNames = typeNames;
+            ViewBag.LocationNames = locations;
+
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Car car)
+        public async Task<IActionResult> CreateAsync(Car car)
         {
+            var categories = await _categoriesRepository.GetCategoriesAsync();
+            var bodyTypes = await _carTypesRepository.GetBodyTypesAsync();
+            var locations = await _locationsRepository.GetLocationsAsync();
+
+            List<string> categorieNames = new List<string>();
+            List<string> typeNames = new List<string>();
+            List<string> locationNames = new List<string>();
+
+            /*get the existing categories name and body types name*/
+            foreach (var item in categories)
+                categorieNames.Add(item.Category_Name);
+            foreach (var item in bodyTypes)
+                typeNames.Add(item.Name);
+            foreach (var item in locations)
+                locationNames.Add(item.City);
+
+            ViewBag.Category_Names = categorieNames;
+            ViewBag.TypeNames = typeNames;
+            ViewBag.LocationNames = locations;
+
+            /*get selections from dropdown form*/
+            string categSelection = Request.Form["Category_Name"].ToString();
+            string bodySelection = Request.Form["TypeName"].ToString();
+            var selectedLocations = Request.Form["AreChecked"].ToList();
+
+            var selectedCategory = await _categoriesRepository.GetCategoryByIDAsync(categSelection);
+            var selectedBodyType = await _carTypesRepository.GetBodyTypeByNameAsync(bodySelection);
+
+            car.Category = selectedCategory;
+            car.Type = selectedBodyType;
+
+            foreach (var sel in selectedLocations)
+            {
+                CarLocation carLocation = new CarLocation();
+                carLocation.Car = car;
+
+                var location = await _locationsRepository.GetLocationByIDAsync(Int32.Parse(sel));
+                carLocation.Location = location;
+
+                car.CarLocations.Add(carLocation);
+            }
+
             _carRepository.InsertCar(car);
-            return View();
+            await _carRepository.SaveAsync();
+
+            return View(car);
         }
         //// GET: Cars
         //public async Task<IActionResult> Index()

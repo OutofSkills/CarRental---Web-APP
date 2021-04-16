@@ -21,10 +21,10 @@ namespace Car_Rental.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var homeCarList = await _cars.GetCarsAsync();
+            var carList = await _cars.GetCarsAsync();
 
             int[] id = { 1, 2, 3, 4 };
-            homeCarList.Where(car => car.CarID == id[0] ||
+            var homeCarList = carList.Where(car => car.CarID == id[0] ||
                                      car.CarID == id[1] ||
                                      car.CarID == id[2] ||
                                      car.CarID == id[3]).ToList();
