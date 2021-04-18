@@ -20,5 +20,10 @@ namespace Car_Rental.Models
         public int Number_Doors { get; set; }
 
         public ICollection<Car> Cars { get; set; }
+
+        public CarTypes()
+        {
+            Cars = new HashSet<Car>();
+        }
     }
 }

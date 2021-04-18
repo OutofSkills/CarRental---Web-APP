@@ -17,5 +17,10 @@ namespace Car_Rental.Models
         public string Details { get; set; }
 
         public ICollection<Car> Cars { get; set; }
+
+        public CarCategory()
+        {
+            Cars = new HashSet<Car>();
+        }
     }
 }

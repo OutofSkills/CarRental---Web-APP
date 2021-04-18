@@ -63,18 +63,18 @@
                 <!--Card Code-->
                 <div class="col-4">
                     <div class="card" style="width: 18rem;">
-                        <a href="#">
+                        <a asp-controller="Cars" asp-action="Listing" asp-route-id=@Model.ElementAt(i).Category_Name>
                             <img class="card-img-top"
                                  src=@Html.DisplayFor(modelItem => Model.ElementAt(i).ImgUrl)
                                  alt="Card image cap">
                         </a>
                         <div class="card-body">
-                            <a class="card-link" href="#"
+                            <a class="card-link" asp-controller="Cars" asp-action="Listing" asp-route-id=@Model.ElementAt(i).Category_Name
                                style="color: cadetblue;font-weight: bold;font-size: 16pt;">@Html.DisplayFor(modelItem => Model.ElementAt(i).Category_Name)</a><br><br>
                             <p class="card-text">
                                 @Html.DisplayFor(modelItem => Model.ElementAt(i).Details)
                             </p>
-                            <p class="card-text"><span style="font-weight: bold;">Medium Price: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Price_per_Day)</p>
+                            <p class="card-text"><span style="font-weight: bold;">Medium Price/Day: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Price_per_Day) $</p>
                         </div>
                     </div>
                 </div>

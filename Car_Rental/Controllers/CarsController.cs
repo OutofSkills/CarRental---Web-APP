@@ -30,9 +30,15 @@ namespace Car_Rental.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Listing()
+        public async Task<IActionResult> Listing(string id)
         {
-            return View(await _carRepository.GetCarsAsync());
+            var cars = await _carRepository.GetCarsAsync();
+            var carsInCategory = cars.Where(car => car.Category.Category_Name == id).ToList();
+
+            var currentCategory = await _categoriesRepository.GetCategoryByIDAsync(id);
+            ViewBag.Category_Name = id;
+            ViewBag.Description = currentCategory.Details;
+            return View(carsInCategory);
         }
 
         [HttpGet]
@@ -44,15 +50,12 @@ namespace Car_Rental.Controllers
 
             List<string> categorieNames = new List<string>();
             List<string> typeNames = new List<string>();
-            List<string> locationNames = new List<string>();
 
             /*get the existing categories name and body types name*/
             foreach (var item in categories)
                 categorieNames.Add(item.Category_Name);
             foreach (var item in bodyTypes)
                 typeNames.Add(item.Name);
-            foreach (var item in locations)
-                locationNames.Add(item.City);
 
             ViewBag.Category_Names = categorieNames;
             ViewBag.TypeNames = typeNames;
@@ -69,15 +72,12 @@ namespace Car_Rental.Controllers
 
             List<string> categorieNames = new List<string>();
             List<string> typeNames = new List<string>();
-            List<string> locationNames = new List<string>();
-
+           
             /*get the existing categories name and body types name*/
             foreach (var item in categories)
                 categorieNames.Add(item.Category_Name);
             foreach (var item in bodyTypes)
                 typeNames.Add(item.Name);
-            foreach (var item in locations)
-                locationNames.Add(item.City);
 
             ViewBag.Category_Names = categorieNames;
             ViewBag.TypeNames = typeNames;
@@ -114,30 +114,6 @@ namespace Car_Rental.Controllers
         //public async Task<IActionResult> Index()
         //{
         //    return View(await _context.Cars.ToListAsync());
-        //}
-
-        //// GET: Cars/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var car = await _context.Cars
-        //        .FirstOrDefaultAsync(m => m.CarID == id);
-        //    if (car == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(car);
-        //}
-
-        //// GET: Cars/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
         //}
 
         //// POST: Cars/Create

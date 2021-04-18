@@ -29,7 +29,10 @@ namespace Car_Rental.Services.CarServices
 
         public async Task<IEnumerable<Car>> GetCarsAsync()
         {
-            return await _context.Cars.ToListAsync();
+            return await _context.Cars.Include(car => car.Type)
+                                      .Include(car => car.Category)
+                                      .Include(car => car.CarLocations).ThenInclude(car => car.Location)
+                                      .ToListAsync();
         }
 
         public void InsertCar(Car car)

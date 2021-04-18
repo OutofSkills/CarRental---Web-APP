@@ -13,12 +13,9 @@ namespace Car_Rental.Controllers
     {
         private readonly ICarCategoryRepository _categoryRepository;
 
-        IndexViewModel _indexView;
-
         public CarCategoriesController(ICarCategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
-            _indexView = new IndexViewModel();
         }
 
         public async Task<IActionResult> Listing()
