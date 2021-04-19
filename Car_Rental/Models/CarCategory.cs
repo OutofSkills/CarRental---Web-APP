@@ -10,12 +10,9 @@ namespace Car_Rental.Models
         [Key]
         public string Category_Name { set; get; }
         public string ImgUrl { get; set; }
-
-        [Column(TypeName = "money")]
-        [Required]
-        public decimal Price_per_Day { get; set; }
         public string Details { get; set; }
-
+        public decimal AveragePrice { get; set; }
+        public int NumberOfCars { get; set; }
         public ICollection<Car> Cars { get; set; }
 
         public CarCategory()

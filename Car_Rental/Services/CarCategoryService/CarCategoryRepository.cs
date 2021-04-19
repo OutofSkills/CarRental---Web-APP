@@ -24,7 +24,7 @@ namespace Car_Rental.Services.CarCategoryServices
 
         public async Task<IEnumerable<CarCategory>> GetCategoriesAsync()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.Include(categ => categ.Cars).ToListAsync();
         }
 
         public async Task<CarCategory> GetCategoryByIDAsync(string categoryId)

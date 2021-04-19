@@ -1,6 +1,6 @@
 ﻿using Car_Rental.Models;
 using Car_Rental.Services.CarCategoryServices;
-using Fluent.Infrastructure.FluentModel;
+using Car_Rental.Services.CarServices;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,29 @@ namespace Car_Rental.Controllers
 
         public async Task<IActionResult> Listing()
         {
-           return View(await _categoryRepository.GetCategoriesAsync());
+            var categories = await _categoryRepository.GetCategoriesAsync();
+
+            if (categories.Count() != 0)
+            {
+                /*Set average price of the category*/
+                foreach (var categ in categories)
+                {
+                    List<decimal> prices = new List<decimal>();
+                    if (categ.Cars.Count() != 0)
+                    {
+                        foreach (var car in categ.Cars)
+                        {
+                            prices.Add(car.PricePerDay);
+                        }
+                        decimal averageCategPrice = prices.Average();
+                        categ.AveragePrice = averageCategPrice;
+                    }
+                    else
+                        categ.AveragePrice = 0;
+                }
+            }
+
+           return View(categories);
         }
 
         [HttpGet]

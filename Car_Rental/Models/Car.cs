@@ -13,6 +13,7 @@ namespace Car_Rental.Models
         public string PictureURL { get; set; }
         public string FuelType { get; set; }
         public DateTime Fabrication_Date { get; set; }
+        public decimal PricePerDay { get; set; }
         public float AverageScore { get; set; }
         public float Acceleration { get; set; }
         public string TransmisionType { get; set; }

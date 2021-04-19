@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label asp-for="Acceleration" class="control-label"></label>
-                                <input asp-for="Acceleration" class="form-control" step="0.01"/>
+                                <input asp-for="Acceleration" class="form-control" step="0.01" />
                                 <span asp-validation-for="Acceleration" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-6">
@@ -77,10 +77,15 @@
                                 <input asp-for="Fabrication_Date" class="form-control" />
                                 <span asp-validation-for="Fabrication_Date" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label asp-for="PictureURL" class="control-label"></label>
                                 <input asp-for="PictureURL" class="form-control" />
                                 <span asp-validation-for="PictureURL" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="PricePerDay" class="control-label"></label>
+                                <input asp-for="PricePerDay" class="form-control" step="0.01" />
+                                <span asp-validation-for="PricePerDay" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">

@@ -56,12 +56,12 @@
             {
                 if (i > 0 && i % 3 == 0)
                 {
-                @:</div><div class="row"><br />
+                @:</div><br /><div class="row">
                     // close and start new row
                 }
 
                 <!--Card Code-->
-                <div class="col-4">
+                <div class="col-md-4 d-flex align-items-stretch">
                     <div class="card" style="width: 18rem;">
                         <a asp-controller="Cars" asp-action="Listing" asp-route-id=@Model.ElementAt(i).Category_Name>
                             <img class="card-img-top"
@@ -74,7 +74,8 @@
                             <p class="card-text">
                                 @Html.DisplayFor(modelItem => Model.ElementAt(i).Details)
                             </p>
-                            <p class="card-text"><span style="font-weight: bold;">Medium Price/Day: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Price_per_Day) $</p>
+                            <p class="card-text"><span style="font-weight: bold;">Medium Price/Day: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).AveragePrice) $</p>
+                            <p class="card-text"><span style="font-weight: bold;">Number of Cars: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).NumberOfCars)</p>
                         </div>
                     </div>
                 </div>
