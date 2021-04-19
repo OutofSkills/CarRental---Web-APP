@@ -11,6 +11,7 @@ namespace Car_Rental.Models
         public string Category_Name { set; get; }
         public string ImgUrl { get; set; }
         public string Details { get; set; }
+        [NotMapped]
         public decimal AveragePrice { get; set; }
         public int NumberOfCars { get; set; }
         public ICollection<Car> Cars { get; set; }
