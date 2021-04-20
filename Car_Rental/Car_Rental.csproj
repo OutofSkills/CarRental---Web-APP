@@ -26,6 +26,7 @@
   <ItemGroup>
     <None Include="wwwroot\css\CarCategoriesStyle.css" />
     <None Include="wwwroot\css\Cars.css" />
+    <None Include="wwwroot\js\car_rating.js" />
     <None Include="wwwroot\Pictures\Avatars\User_avatar.jpg" />
     <None Include="wwwroot\Pictures\Avatars\User_avatar_V2.png" />
     <None Include="wwwroot\Pictures\Cars\all_types.jpg" />

@@ -1,3 +1,4 @@
+
 // Initial Ratings
 const ratings = {
     car_id_0: 4.7,
@@ -24,7 +25,7 @@ const ratings = {
     document.addEventListener('DOMContentLoaded', getRatings);
     
 // Get ratings
-function getRatings() {
+function getRatings(rating) {
     for (let rating in ratings) {
 
       // Get percentage
@@ -41,18 +42,3 @@ function getRatings() {
     }
   }
 
-let HTMLResult = ``;
-let HtmlOutput =  document.getElementById('car-container');
-console.log(HtmlOutput);
-function Car(cardId){
-
-        HTMLResult += `   <div class="${cardId}" style="font-size: 16pt; text-align: center;">
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                </div>`;
-
-        return HtmlOutput.innerHTML = HTMLResult;
-}
-
-Car(arr[0])
