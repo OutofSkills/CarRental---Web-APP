@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <!-- Font Awesome CSS -->
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+  <!--JQUERY-->
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <!--JavaScript-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <!--JAVASCRIPT-->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript"></script>
+  <!--local CSS-->
+  <link rel="stylesheet" href="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\CSS\SettingsStyle.css">
+
+  <title>User Settings</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <!--Navigation bar-->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #548b97;">
+    <div class="container-fluid">
+      <!--Navigation bar logo-->
+      <a class="navbar-brand" href="Home.html">
+        <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Logo\car_rent_logo.jpg" alt=""
+          width="40" height="40" class="d-inline-block align-top">
+        <span class="text"
+          style="font-family: 'Niconne', cursive;font-weight: bold; text-shadow: 2px 2px 4px #000000;">Car
+          Rental</span>
+      </a>
+
+      <!--NavBar items-->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: bold;">
+        <li class="nav-item active">
+          <a class="nav-link" href="CarTypes.html">Cars</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="Locations.html">Locations</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
+        </li>
+      </ul>
+
+      <!--Login/Welcome-->
+      <div class="nav-item dropdown" style="padding-right: 7%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+          aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span>User</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="Profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#"><img
+                      src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\SVGs\rent_logo.svg">
+                    Reservations</a></li>
+                <li><a class="dropdown-item" href="Settings.html"><i class="fa fa-sliders"></i> Settings</a></li>
+                <div class="dropdown-divider"></div>
+                <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <br>
+
+  <!--User Settings-->
+  <div class="container-fluid" style="padding-left: 12%;padding-top: 5%;">
+    <div class="row gx-3 gy-3">
+      <!--User picture card-->
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="account-settings">
+              <div class="user-profile">
+                <div class="user-avatar">
+                  <img src="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\Pictures\Avatars\User_avatar_V2.png"
+                    alt="User">
+                </div>
+                <h5 class="user-name">User name</h5>
+                <h6 class="user-email">user@mail.com</h6>
+              </div>
+              <div class="about">
+                <h5>About</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Settings card-->
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="card-title">Settings</div>
+            <form>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="Email" placeholder="Enter email" required="true">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="Password" placeholder="Enter password"
+                      required="true">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="confirmPass">Confirm password</label>
+                    <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password"
+                      required="true">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <!--Submit/Cancel buttons-->
+              <div class="row gy-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div class="text-center">
+                    <button type="button" id="cancel" name="Cancel" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" id="update" name="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Footer-->
+  <footer class="footer mt-auto py-3" style="background-color: #548b97;">
+    <div class="container-fluid" style="color: white;">
+      &copy;
+      <span id="copyright">
+        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+      </span>
+      Cojocaru Ion
+    </div>
+  </footer>
+
+  <!--Modal contact us container-->
+  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel" style="font-size: 16pt;font-weight: bold;">Contact Us
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!--Contact details list-->
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Email: </strong>
+              <a href="mailto:kojocaru.ivan@gmail.com" style="text-decoration: none;">&nbsp; kojocaru.ivan@gmail.com</a>
+            </li>
+            <li class="list-group-item"><strong> Phone:</strong><span>&nbsp; 0-785-423-572</span>
+            </li>
+            <li class="list-group-item">
+              <strong>Address:</strong>
+              <span>&nbsp; Craiova, Romania</span>
+            </li>
+          </ul><br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

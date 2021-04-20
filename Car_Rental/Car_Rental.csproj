@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Net.Compilers" Version="3.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\CarCategoriesStyle.css" />
+    <None Include="wwwroot\css\Cars.css" />
+    <None Include="wwwroot\js\car_rating.js" />
+    <None Include="wwwroot\Pictures\Avatars\User_avatar.jpg" />
+    <None Include="wwwroot\Pictures\Avatars\User_avatar_V2.png" />
+    <None Include="wwwroot\Pictures\Cars\all_types.jpg" />
+    <None Include="wwwroot\Pictures\Cars\ford_fiesta.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\Audi-RS-7.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\BMW-X7.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\Ford-Mustang.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\Mercedes-Benz-E-Class.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\mercedes-g-class.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\rolls-royce-fantom.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\tesla-model-s.png" />
+    <None Include="wwwroot\Pictures\Cars\Luxury\tesla-roadster.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Mini_cooper.jpg" />
+    <None Include="wwwroot\Pictures\Cars\tesla_cybertruck.jpg" />
+    <None Include="wwwroot\Pictures\Cars\Tesla_Mod_x.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Compact.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Convertible.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\economy.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Family.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Full-sized.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Intermediate.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Luxury.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Mini.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Sedan.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Standard.jpg" />
+    <None Include="wwwroot\Pictures\CarTypes\Suv.jpg" />
+    <None Include="wwwroot\Pictures\Logo\car_rent_logo.jpg" />
+    <None Include="wwwroot\Pictures\SVGs\gps_icon.svg" />
+    <None Include="wwwroot\Pictures\SVGs\rent_logo.svg" />
+  </ItemGroup>
+
+</Project>

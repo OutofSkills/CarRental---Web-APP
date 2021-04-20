@@ -1,0 +1,288 @@
+﻿@model IEnumerable<Car>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <!--Bootstrap-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <!--Local CSS-->
+    <link rel="stylesheet" href="\css\Cars.css">
+    <title>Cars</title>
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!--About Cars-->
+    <div class="jumbotron text-center">
+        <div class="container-fluid">
+            <h1 style="color: rgb(0, 0, 0);text-shadow: 2px 2px 4px #374644;">@ViewBag.Category_Name</h1>
+            <p>
+                <span style="font-weight: bold;">@ViewBag.Description</span>
+            </p><br>
+
+            <!--Search field-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md"></div>
+                    <div class="col-md-4">
+                        <form class="d-flex" asp-action="Search" asp-route-category=@ViewBag.Category_Name style="display: flex; justify-content: end;">
+                            <input class="form-control me-2" type="search" name="searchedCarModel" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <div class="col-md"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col" style="text-align:end">
+            <a href='@Url.Action("Create","Cars")' class="btn btn-outline-dark">
+                New Car
+            </a>
+        </div>
+    </div><br />
+    <!--List of vechicle types-->
+    <div class="container-fluid">
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <!--Card Code-->
+                <div class="col-md-4 col-lg-4 col-sm-6 d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src=@Html.DisplayFor(modelItem => Model.ElementAt(i).PictureURL)
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title" href="#"
+                               style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
+                                <span class="carModel">@Html.DisplayFor(modelItem => Model.ElementAt(i).Model)</span>
+                            </p>
+                            <br>
+                            <div class="card-text">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_people.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Type.Number_Passengers)</span>
+                                        </div>
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_door.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Type.Number_Doors)</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_gearbox.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).TransmisionType)</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/40x40/ico_fuelbig.svg"
+                                                 alt="">
+                                            <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).FuelType)</span>
+                                        </div>
+                                        @if (Model.ElementAt(i).ClimateControll)
+                                        {
+                                            <div class="col-md" style="padding-top: 3%;">
+                                                <img src="https://sx-content-labs.sixt.io/img/svg/Icons-black/24x24/ico_snowflake.svg"
+                                                     alt="">
+                                                <span>AC</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <!--Price-->
+                                <section class="pricing py-5">
+                                    <h6 class="card-price text-center">$@Html.DisplayFor(modelItem => Model.ElementAt(i).PricePerDay)<span class="period">/day</span></h6>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!--Rating-->
+                        <div id="car-container">
+                            <!--car rating-->
+                            <div class="id-@Model.ElementAt(i).CarID" style="font-size: 16pt; text-align: center;">
+                                <div class="stars-outer">
+                                    <div class="stars-inner"></div>
+                                </div>
+                            </div>`
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#details-@Model.ElementAt(i).CarID">
+                                        Details
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                            data-bs-target="#reservationModal">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--Details pop up-->
+                <div class="modal fade" id="details-@Model.ElementAt(i).CarID" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="form">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailsModalLabel" style="font-size: 16pt;font-weight: bold;">
+                                    Details
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--Details List-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item ">
+                                        Available at locations:
+                                        @if (Model.ElementAt(i).CarLocations.Count > 0)
+                                            @foreach (var location in Model.ElementAt(i).CarLocations)
+                                            {
+                                                <span>@location.Location.City</span>
+                                            }
+                                            else
+                                            {
+                                                <span>None</span>
+                                            }
+                                    </li>
+                                    <li class="list-group-item">
+                                        Body type:<span>&nbsp @Model.ElementAt(i).Type.Name</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Acceleration:<span>&nbsp @Model.ElementAt(i).Acceleration</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Assembly
+                                        year:<span>&nbsp @Model.ElementAt(i).Fabrication_Date</span>
+                                    </li>
+                                </ul><br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             }
+        </div>
+        <!--Some space between body and footer-->
+        <br><br>
+
+        <!--Modal reservation container-->
+        <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reservationModalLabel" style="font-size: 16pt;font-weight: bold;">
+                            Book
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Modal-Form-->
+                        <form role="form">
+                            <div class="form-group row">
+                                <!--Pick-up Date and time-->
+                                <div class="form-group">
+                                    <label for="datetime-local-input" class="col col-form-label">Pick-up Date</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="datetime-local" value="yyyy-MM-dd hh:MM:ss"
+                                               id="datetime-local-input" required">
+                                    </div>
+                                </div>
+                                <!--Duration of the rent-->
+                                <div class="form-group">
+                                    <label for="number-input" class="col col-form-label">Rent duration</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" value="1" id="number-input"
+                                               required>
+                                    </div>
+                                </div>
+                                <!--Coupon code-->
+                                <div class="form-group">
+                                    <label for="couponCodeInput" class="col col-form-label">Coupon code</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" id="couponCodeInput"
+                                               aria-describedby="cuponCode">
+                                        <div id="cuponCode" class="form-text">Do you have a coupon code?</div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Book</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        var carList = @Html.Raw(Json.Serialize(Model));
+
+            // Total Stars
+            const starsTotal = 5;
+
+            // Run getRatings when DOM loads
+            document.addEventListener('DOMContentLoaded', getRatings);
+
+        // Get ratings
+        function getRatings() {
+            for (let i = 0; i < carList.length; i++) {
+
+              // Get percentage
+              const starPercentage = (carList[i]['averageScore'] / starsTotal) * 100;
+
+              // Round to nearest 10
+              const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+              // Set width of stars-inner to percentage
+                document.querySelector(`.${'id-'+carList[i]['carID']} .stars-inner`).style.width = starPercentageRounded;
+
+              // Add number rating
+             // document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+            }
+          }
+
+
+    </script>
+
+}
