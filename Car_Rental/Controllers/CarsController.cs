@@ -146,5 +146,33 @@ namespace Car_Rental.Controllers
 
             return View(car);
         }
+
+        public async Task<IActionResult> Search(string searchedCarModel, string category)
+        {
+            var cars = await _carRepository.GetCarsAsync();
+            if (!string.IsNullOrEmpty(category))
+            {
+                var carsInCategory = cars.Where(car => car.Category.Category_Name == category).ToList();
+                var currentCategory = await _categoriesRepository.GetCategoryByIDAsync(category);
+
+                ViewBag.Category_Name = category;
+                ViewBag.Description = currentCategory.Details;
+
+                if (!string.IsNullOrEmpty(searchedCarModel))
+                {
+                    var matchedCars = carsInCategory.Where(car => car.Model.ToLower().Contains(searchedCarModel.ToLower())).ToList();
+                    return View("Listing", matchedCars);
+                }
+
+                return View("Listing", carsInCategory);
+            }
+            else
+            {
+                ViewBag.Category_Name = "All the Cars";
+                ViewBag.Description = "Choose the best car from all the categories";
+
+                return View("Listing", cars);
+            }
+        }
     }
 }

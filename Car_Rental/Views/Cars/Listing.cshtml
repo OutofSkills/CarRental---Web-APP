@@ -39,8 +39,8 @@
                 <div class="row">
                     <div class="col-md"></div>
                     <div class="col-md-4">
-                        <form class="d-flex" style="display: flex; justify-content: end;">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" asp-action="Search" asp-route-category=@ViewBag.Category_Name style="display: flex; justify-content: end;">
+                            <input class="form-control me-2" type="search" name="searchedCarModel" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-primary" type="submit">Search</button>
                         </form>
                     </div>
@@ -62,14 +62,8 @@
         <div class="row">
             @for (int i = 0; i < Model.Count(); i++)
             {
-                if (i > 0 && i % 4 == 0)
-                {
-                @:</div><br /><br /><div class="row">
-                    // close and start new row
-                }
-
                 <!--Card Code-->
-                <div class="col-md d-flex align-items-stretch">
+                <div class="col-md-4 col-lg-4 col-sm-6 d-flex align-items-stretch">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top"
                              src=@Html.DisplayFor(modelItem => Model.ElementAt(i).PictureURL)
@@ -77,7 +71,7 @@
                         <div class="card-body">
                             <p class="card-title" href="#"
                                style="color: rgb(68, 86, 94);font-weight: bold;font-size: 14pt;">
-                                <span>@Html.DisplayFor(modelItem => Model.ElementAt(i).Model)</span>
+                                <span class="carModel">@Html.DisplayFor(modelItem => Model.ElementAt(i).Model)</span>
                             </p>
                             <br>
                             <div class="card-text">
@@ -199,71 +193,71 @@
                         </div>
                     </div>
                 </div>
-            }
+             }
+        </div>
+        <!--Some space between body and footer-->
+        <br><br>
 
-            <!--Some space between body and footer-->
-            <br><br>
-
-            <!--Modal reservation container-->
-            <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="form">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="reservationModalLabel" style="font-size: 16pt;font-weight: bold;">
-                                Book
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!--Modal-Form-->
-                            <form role="form">
-                                <div class="form-group row">
-                                    <!--Pick-up Date and time-->
-                                    <div class="form-group">
-                                        <label for="datetime-local-input" class="col col-form-label">Pick-up Date</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="datetime-local" value="yyyy-MM-dd hh:MM:ss"
-                                                   id="datetime-local-input" required="true">
-                                        </div>
-                                    </div>
-                                    <!--Duration of the rent-->
-                                    <div class="form-group">
-                                        <label for="number-input" class="col col-form-label">Rent duration</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="number" value="1" id="number-input"
-                                                   required="true">
-                                        </div>
-                                    </div>
-                                    <!--Coupon code-->
-                                    <div class="form-group">
-                                        <label for="couponCodeInput" class="col col-form-label">Coupon code</label>
-                                        <div class="col-10">
-                                            <input class="form-control" type="text" id="couponCodeInput"
-                                                   aria-describedby="cuponCode">
-                                            <div id="cuponCode" class="form-text">Do you have a coupon code?</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Book</button>
+        <!--Modal reservation container-->
+        <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reservationModalLabel" style="font-size: 16pt;font-weight: bold;">
+                            Book
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Modal-Form-->
+                        <form role="form">
+                            <div class="form-group row">
+                                <!--Pick-up Date and time-->
+                                <div class="form-group">
+                                    <label for="datetime-local-input" class="col col-form-label">Pick-up Date</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="datetime-local" value="yyyy-MM-dd hh:MM:ss"
+                                               id="datetime-local-input" required">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <!--Duration of the rent-->
+                                <div class="form-group">
+                                    <label for="number-input" class="col col-form-label">Rent duration</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" value="1" id="number-input"
+                                               required>
+                                    </div>
+                                </div>
+                                <!--Coupon code-->
+                                <div class="form-group">
+                                    <label for="couponCodeInput" class="col col-form-label">Coupon code</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" id="couponCodeInput"
+                                               aria-describedby="cuponCode">
+                                        <div id="cuponCode" class="form-text">Do you have a coupon code?</div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Book</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
 
-@section Scripts{ 
+@section Scripts{
     <script type="text/javascript">
 
         var carList = @Html.Raw(Json.Serialize(Model));
-        
+
             // Total Stars
             const starsTotal = 5;
 
@@ -290,4 +284,5 @@
 
 
     </script>
+
 }
