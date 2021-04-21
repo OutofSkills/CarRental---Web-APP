@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Car_Rental.Models.CarCategory>;
+﻿@model IEnumerable<Location>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,22 +18,22 @@
             integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
             crossorigin="anonymous"></script>
     <!--Local CSS-->
-    <link rel="stylesheet" href="\css\CarCategoriesStyle.css">
-    <title>Car Types</title>
+    <link rel="stylesheet" href="\css\LocationsStyle.css">
+    <title>Locations</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <!--About Car Types-->
+
+    <!--About locations page-->
     <div class="jumbotron text-center">
-        <h1>Don't dream it, drive it!</h1>
-        <p>Going with friend or family in a trip? Or you want to enjoy a luxury trip by yourself?</p>
-        <p style="color: chocolate;">Pick the suitable car type!</p>
+        <h1>Available all around the country</h1>
+        <p>Where are you goin? Pick your location...</p>
     </div>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col" style="text-align:end">
-                <button id="createCategory" type="button" class="btn btn-outline-dark">New Category</button>
+                <button id="createLocation" type="button" class="btn btn-outline-dark">New Location</button>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createModalLabel" style="font-size: 16pt;font-weight: bold;">
-                        New Category
+                        New Location
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -55,60 +55,60 @@
         </div>
     </div>
 
-    <!--List of vechicle types-->
+    <!--List of Locations-->
     <div class="container-fluid" style="padding-left: 5%;">
         <div class="row">
             @for (int i = 0; i < Model.Count(); i++)
             {
-                if (i > 0 && i % 3 == 0)
-                {
-                @:</div><br /><div class="row">
-                    // close and start new row
-                }
-
                 <!--Card Code-->
-                <div class="col-md-4 d-flex align-items-stretch">
+                <div class="col-md-4 d-flex align-items-stretch mt-3">
                     <div class="card" style="width: 18rem;">
-                        <a asp-controller="Cars" asp-action="Listing" asp-route-id=@Model.ElementAt(i).Category_Name>
+                        <a asp-action="CarsInLocation" asp-route-id=@Model.ElementAt(i).Location_ID>
                             <img class="card-img-top"
-                                 src=@Html.DisplayFor(modelItem => Model.ElementAt(i).ImgUrl)
+                                 src=@Html.DisplayFor(modelItem => Model.ElementAt(i).CityPicture)
                                  alt="Card image cap">
                         </a>
                         <div class="card-body">
-                            <a class="card-link" asp-controller="Cars" asp-action="Listing" asp-route-id=@Model.ElementAt(i).Category_Name
-                               style="color: cadetblue;font-weight: bold;font-size: 16pt;">@Html.DisplayFor(modelItem => Model.ElementAt(i).Category_Name)</a><br><br>
+                            <a class="card-link" asp-action="CarsInLocation" asp-route-id=@Model.ElementAt(i).Location_ID
+                               style="color: cadetblue;font-weight: bold;font-size: 16pt;">@Html.DisplayFor(modelItem => Model.ElementAt(i).City)</a><br><br>
                             <p class="card-text">
-                                @Html.DisplayFor(modelItem => Model.ElementAt(i).Details)
+                                <span style="font-weight:bold">County: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).County)
+                                <br />
+                                <span style="font-weight:bold">Street: </span> @Html.DisplayFor(modelItem => Model.ElementAt(i).Street) @Html.DisplayFor(modelItem => Model.ElementAt(i).Street_Number)
+                                <br />
+                                <span style="font-weight:bold">Number of cars: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).CarsAtLocation.Count)
                             </p>
-                            <p class="card-text"><span style="font-weight: bold;">Medium Price/Day: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).AveragePrice) $</p>
-                            <p class="card-text"><span style="font-weight: bold;">Number of Cars: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).NumberOfCars)</p>
                         </div>
                     </div>
                 </div>
                 <!--End of the card code-->
             }
+            <br />
         </div>
     </div>
 </body>
 </html>
 
-<script>
-$(document).ready(function() {
-    $(document).on('click','#createCategory', function(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#createLocation', function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
 
-        $.ajax({
-           url: '/CarCategories/Create',
-           type: 'GET',
-           success: function(data) {
-                $('#createModalFormBody').html(data);
-                $('#createModalForm').modal('show');
-           },
-           error: function() {
-               alert("There is some problem in the service!")
-          }
-       });
-    });
-});
-</script>
+                $.ajax({
+                    url: '/Locations/Create',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#createModalFormBody').html(data);
+                        $('#createModalForm').modal('show');
+                    },
+                    error: function () {
+                        alert("There is some problem in the service!")
+                    }
+                });
+            });
+        });
+    </script>
+}

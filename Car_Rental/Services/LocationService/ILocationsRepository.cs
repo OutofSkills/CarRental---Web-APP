@@ -9,7 +9,7 @@ namespace Car_Rental.Services.LocationService
     public interface ILocationsRepository
     {
         Task<IEnumerable<Location>> GetLocationsAsync();
-        Task<Location> GetLocationByIDAsync(int locationId);
+        Location GetLocationByID(int locationId);
         Task SaveAsync();
         Task DeleteLocation(int locationId);
         void InsertLocation(Location location);

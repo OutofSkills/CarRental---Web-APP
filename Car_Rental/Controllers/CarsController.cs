@@ -15,25 +15,25 @@ namespace Car_Rental.Controllers
 {
     public class CarsController : Controller
     {
-        private readonly ICarsRepository _carRepository;
-        private readonly ICarCategoryRepository _categoriesRepository;
-        private readonly ICarTypeRepository _carTypesRepository;
-        private readonly ILocationsRepository _locationsRepository;
+        private readonly ICarsRepository _carsRepo;
+        private readonly ICarCategoryRepository _categoriesRepo;
+        private readonly ICarTypeRepository _typesRepo;
+        private readonly ILocationsRepository _locationsRepo;
 
         /// <summary>
         /// Constructor that initializes the car related repositories
         /// </summary>
-        /// <param name="carRepository"></param>
-        /// <param name="categoriesRepository"></param>
-        /// <param name="carTypesRepository"></param>
-        /// <param name="locationsRepository"></param>
-        public CarsController(ICarsRepository carRepository, ICarCategoryRepository categoriesRepository, 
-                              ICarTypeRepository carTypesRepository, ILocationsRepository locationsRepository)
+        /// <param name="carRepo"></param>
+        /// <param name="categoriesRepo"></param>
+        /// <param name="typesRepo"></param>
+        /// <param name="locationsRepo"></param>
+        public CarsController(ICarsRepository carRepo, ICarCategoryRepository categoriesRepo, 
+                              ICarTypeRepository typesRepo, ILocationsRepository locationsRepo)
         {
-            _carRepository = carRepository;
-            _categoriesRepository = categoriesRepository;
-            _carTypesRepository = carTypesRepository;
-            _locationsRepository = locationsRepository;
+            _carsRepo = carRepo;
+            _categoriesRepo = categoriesRepo;
+            _typesRepo = typesRepo;
+            _locationsRepo = locationsRepo;
         }
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace Car_Rental.Controllers
         [HttpGet]
         public async Task<IActionResult> Listing(string id)
         {
-            var cars = await _carRepository.GetCarsAsync();
+            var cars = await _carsRepo.GetCarsAsync();
 
             if (!string.IsNullOrEmpty(id))
             {
                 var carsInCategory = cars.Where(car => car.Category.Category_Name == id).ToList();
-                var currentCategory = await _categoriesRepository.GetCategoryByIDAsync(id);
+                var currentCategory = await _categoriesRepo.GetCategoryByIDAsync(id);
 
                 ViewBag.Category_Name = id;
                 ViewBag.Description = currentCategory.Details;
@@ -72,9 +72,9 @@ namespace Car_Rental.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var categories = await _categoriesRepository.GetCategoriesAsync();
-            var bodyTypes = await _carTypesRepository.GetBodyTypesAsync();
-            var locations = await _locationsRepository.GetLocationsAsync();
+            var categories = await _categoriesRepo.GetCategoriesAsync();
+            var bodyTypes = await _typesRepo.GetBodyTypesAsync();
+            var locations = await _locationsRepo.GetLocationsAsync();
 
             List<string> categorieNames = new List<string>();
             List<string> typeNames = new List<string>();
@@ -100,9 +100,9 @@ namespace Car_Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(Car car)
         {
-            var categories = await _categoriesRepository.GetCategoriesAsync();
-            var bodyTypes = await _carTypesRepository.GetBodyTypesAsync();
-            var locations = await _locationsRepository.GetLocationsAsync();
+            var categories = await _categoriesRepo.GetCategoriesAsync();
+            var bodyTypes = await _typesRepo.GetBodyTypesAsync();
+            var locations = await _locationsRepo.GetLocationsAsync();
 
             List<string> categorieNames = new List<string>();
             List<string> typeNames = new List<string>();
@@ -122,8 +122,8 @@ namespace Car_Rental.Controllers
             string bodySelection = Request.Form["TypeName"].ToString();
             var selectedLocations = Request.Form["AreChecked"].ToList();
 
-            var selectedCategory = await _categoriesRepository.GetCategoryByIDAsync(categSelection);
-            var selectedBodyType = await _carTypesRepository.GetBodyTypeByNameAsync(bodySelection);
+            var selectedCategory = await _categoriesRepo.GetCategoryByIDAsync(categSelection);
+            var selectedBodyType = await _typesRepo.GetBodyTypeByNameAsync(bodySelection);
 
             car.Category = selectedCategory;
             /*Increment the number of cars in this category*/
@@ -135,21 +135,27 @@ namespace Car_Rental.Controllers
                 CarLocation carLocation = new CarLocation();
                 carLocation.Car = car;
 
-                var location = await _locationsRepository.GetLocationByIDAsync(Int32.Parse(sel));
+                var location =  _locationsRepo.GetLocationByID(Int32.Parse(sel));
                 carLocation.Location = location;
 
                 car.CarLocations.Add(carLocation);
             }
 
-            _carRepository.InsertCar(car);
-            await _carRepository.SaveAsync();
+            _carsRepo.InsertCar(car);
+            await _carsRepo.SaveAsync();
 
             return View(car);
         }
 
+        /// <summary>
+        /// Search a car in a category with a search string passed from the Listing view
+        /// </summary>
+        /// <param name="searchedCarModel"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Search(string searchedCarModel, string category)
         {
-            var cars = await _carRepository.GetCarsAsync();
+            var cars = await _carsRepo.GetCarsAsync();
             if (!string.IsNullOrEmpty(category))
             {
                 List<Car> carsInCategory = new List<Car>();
@@ -167,7 +173,7 @@ namespace Car_Rental.Controllers
                 else
                 {
                     carsInCategory = cars.Where(car => car.Category.Category_Name == category).ToList();
-                    var currentCategory = await _categoriesRepository.GetCategoryByIDAsync(category);
+                    var currentCategory = await _categoriesRepo.GetCategoryByIDAsync(category);
 
                     ViewBag.Category_Name = category;
                     ViewBag.Description = currentCategory.Details;

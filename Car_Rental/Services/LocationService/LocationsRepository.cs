@@ -22,14 +22,18 @@ namespace Car_Rental.Services.LocationService
             _context.Cars.Remove(locationToDelete);
         }
 
-        public async Task<Location> GetLocationByIDAsync(int locationID)
+        public Location GetLocationByID(int locationID)
         {
-            return await _context.Locations.FindAsync(locationID);
+            var locations = _context.Locations.Include(l => l.CarsAtLocation).ThenInclude(l => l.Car)
+                                                                             .ThenInclude(c=>c.Category)
+                                              .Include(l => l.CarsAtLocation).ThenInclude(l => l.Car)
+                                                                             .ThenInclude(c => c.Type).ToList();
+            return locations.Find(l=> l.Location_ID == locationID);
         }
 
         public async Task<IEnumerable<Location>> GetLocationsAsync()
         {
-            return await _context.Locations.ToListAsync();
+            return await _context.Locations.Include(l => l.CarsAtLocation).ThenInclude(l => l.Car).ToListAsync();
         }
 
         public void InsertLocation(Location location)

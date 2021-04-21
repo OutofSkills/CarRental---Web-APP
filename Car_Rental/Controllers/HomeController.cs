@@ -12,16 +12,16 @@ namespace Car_Rental.Controllers
     public class HomeController : Controller
     {
 
-        private readonly ICarsRepository _cars;
+        private readonly ICarsRepository _carsRepo;
 
         public HomeController(ICarsRepository cars)
         {
-            _cars = cars;
+            _carsRepo = cars;
         }
 
         public async Task<IActionResult> Index()
         {
-            var carList = await _cars.GetCarsAsync();
+            var carList = await _carsRepo.GetCarsAsync();
 
             int[] id = { 1, 2, 3, 4 };
             var homeCarList = carList.Where(car => car.CarID == id[0] ||

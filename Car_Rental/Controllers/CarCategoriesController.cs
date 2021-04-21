@@ -11,16 +11,16 @@ namespace Car_Rental.Controllers
 {
     public class CarCategoriesController : Controller
     {
-        private readonly ICarCategoryRepository _categoryRepository;
+        private readonly ICarCategoryRepository _categoriesRepo;
 
         public CarCategoriesController(ICarCategoryRepository categoryRepository)
         {
-            _categoryRepository = categoryRepository;
+            _categoriesRepo = categoryRepository;
         }
 
         public async Task<IActionResult> Listing()
         {
-            var categories = await _categoryRepository.GetCategoriesAsync();
+            var categories = await _categoriesRepo.GetCategoriesAsync();
 
             if (categories.Count() != 0)
             {
@@ -55,8 +55,8 @@ namespace Car_Rental.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryRepository.InsertCategory(category);
-                await _categoryRepository.SaveAsync();
+                _categoriesRepo.InsertCategory(category);
+                await _categoriesRepo.SaveAsync();
                 return RedirectToAction(nameof(Listing));
             }
 

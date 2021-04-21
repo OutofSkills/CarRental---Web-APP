@@ -15,7 +15,8 @@ namespace Car_Rental.Models
         [Required]
         public string City { get; set; }
         public string Street { get; set; }
-        public int Street_Numver { get; set; }
+        public int Street_Number { get; set; }
+        public string CityPicture { get; set; }
 
         public ICollection<CarLocation> CarsAtLocation { get; set; }
 
