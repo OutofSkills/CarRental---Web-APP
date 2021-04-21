@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car_Rental.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    [Migration("20210419085349_NewCarProperty")]
-    partial class NewCarProperty
+    [Migration("20210421163707_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,18 +93,22 @@ namespace Car_Rental.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FuelType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TransmisionType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Type_ID")
@@ -124,14 +128,16 @@ namespace Car_Rental.Migrations
                     b.Property<string>("Category_Name")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal>("AveragePrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Details")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfCars")
+                        .HasColumnType("int");
 
                     b.HasKey("Category_Name");
 
@@ -251,14 +257,19 @@ namespace Car_Rental.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CityPicture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("County")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Street_Numver")
+                    b.Property<int>("Street_Number")
                         .HasColumnType("int");
 
                     b.HasKey("Location_ID");

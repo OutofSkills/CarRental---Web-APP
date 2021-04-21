@@ -11,21 +11,37 @@ namespace Car_Rental.Models
         [Key]
         public int CarID { set; get; }
         [JsonIgnore]
+        [Required]
         public string Model { get; set; }
         [JsonIgnore]
+        [Required]
+        [Display(Name = "Picture Url")]
+        [MinLength(10)]
         public string PictureURL { get; set; }
         [JsonIgnore]
+        [Required]
+        [Display(Name = "Fuel Type")]
         public string FuelType { get; set; }
         [JsonIgnore]
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Fabrication Date")]
         public DateTime Fabrication_Date { get; set; }
         [JsonIgnore]
+        [Required]
+        [Display(Name = "Price/Day")]
         public decimal PricePerDay { get; set; }
+        [Display(Name = "Average Score")]
         public float AverageScore { get; set; }
         [JsonIgnore]
         public float Acceleration { get; set; }
         [JsonIgnore]
+        [Required]
+        [Display(Name = "Transmission Type")]
         public string TransmisionType { get; set; }
         [JsonIgnore]
+        [Required]
+        [Display(Name = "Climate Control")]
         public bool ClimateControll { get; set; }
 
         [JsonIgnore]

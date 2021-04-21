@@ -11,12 +11,16 @@ namespace Car_Rental.Models
         [Key]
         public int Type_ID { get; set; }
         [Required]
+        [MinLength(3)]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Number of Passengers")]
         public int Number_Passengers { get; set; }
         [Required]
+        [Display(Name = "Number of Suitcases")]
         public int Number_Suitacases { get; set; }
         [Required]
+        [Display(Name = "Number of Doors")]
         public int Number_Doors { get; set; }
 
         public ICollection<Car> Cars { get; set; }

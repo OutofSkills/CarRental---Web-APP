@@ -23,11 +23,7 @@ namespace Car_Rental.Controllers
         {
             var carList = await _carsRepo.GetCarsAsync();
 
-            int[] id = { 1, 2, 3, 4 };
-            var homeCarList = carList.Where(car => car.CarID == id[0] ||
-                                     car.CarID == id[1] ||
-                                     car.CarID == id[2] ||
-                                     car.CarID == id[3]).ToList();
+            var homeCarList = carList.Take(5);
 
             return View(homeCarList);
         }

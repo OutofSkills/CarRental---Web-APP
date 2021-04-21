@@ -127,7 +127,7 @@ namespace Car_Rental.Controllers
 
             car.Category = selectedCategory;
             /*Increment the number of cars in this category*/
-            car.Category.NumberOfCars += 1;
+            car.Category.NumberOfCars = car.Category.Cars.Count + 1;
             car.Type = selectedBodyType;
 
             foreach (var sel in selectedLocations)

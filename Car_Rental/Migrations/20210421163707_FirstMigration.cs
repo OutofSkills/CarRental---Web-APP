@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Car_Rental.Migrations
 {
-    public partial class NewCarProperty : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,9 +59,9 @@ namespace Car_Rental.Migrations
                 columns: table => new
                 {
                     Category_Name = table.Column<string>(nullable: false),
-                    ImgUrl = table.Column<string>(nullable: true),
-                    Details = table.Column<string>(nullable: true),
-                    AveragePrice = table.Column<decimal>(nullable: false)
+                    ImgUrl = table.Column<string>(nullable: false),
+                    Details = table.Column<string>(nullable: false),
+                    NumberOfCars = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,8 +91,9 @@ namespace Car_Rental.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     County = table.Column<string>(nullable: false),
                     City = table.Column<string>(nullable: false),
-                    Street = table.Column<string>(nullable: true),
-                    Street_Numver = table.Column<int>(nullable: false)
+                    Street = table.Column<string>(nullable: false),
+                    Street_Number = table.Column<int>(nullable: false),
+                    CityPicture = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -146,14 +147,14 @@ namespace Car_Rental.Migrations
                 {
                     CarID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(nullable: true),
-                    PictureURL = table.Column<string>(nullable: true),
-                    FuelType = table.Column<string>(nullable: true),
+                    Model = table.Column<string>(nullable: false),
+                    PictureURL = table.Column<string>(nullable: false),
+                    FuelType = table.Column<string>(nullable: false),
                     Fabrication_Date = table.Column<DateTime>(nullable: false),
                     PricePerDay = table.Column<decimal>(nullable: false),
                     AverageScore = table.Column<float>(nullable: false),
                     Acceleration = table.Column<float>(nullable: false),
-                    TransmisionType = table.Column<string>(nullable: true),
+                    TransmisionType = table.Column<string>(nullable: false),
                     ClimateControll = table.Column<bool>(nullable: false),
                     Category_Name = table.Column<string>(nullable: true),
                     Type_ID = table.Column<int>(nullable: true)

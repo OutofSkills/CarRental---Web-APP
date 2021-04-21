@@ -91,18 +91,22 @@ namespace Car_Rental.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FuelType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TransmisionType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Type_ID")
@@ -123,9 +127,11 @@ namespace Car_Rental.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Details")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfCars")
@@ -250,6 +256,7 @@ namespace Car_Rental.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CityPicture")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("County")
@@ -257,6 +264,7 @@ namespace Car_Rental.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Street_Number")

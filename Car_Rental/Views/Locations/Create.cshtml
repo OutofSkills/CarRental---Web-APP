@@ -5,27 +5,27 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group" style="margin-bottom: 10px">
             <label asp-for="County" class="control-label"></label>
-            <input asp-for="County" class="form-control" />
+            <input asp-for="County" class="form-control" pattern=".{3,}" required title="3 characters minimum"/>
             <span asp-validation-for="County" class="text-danger"></span>
         </div>
         <div class="form-group" style="margin-bottom: 10px">
             <label asp-for="City" class="control-label"></label>
-            <input asp-for="City" class="form-control" />
+            <input asp-for="City" class="form-control" pattern=".{3,}" required title="3 characters minimum"/>
             <span asp-validation-for="City" class="text-danger"></span>
         </div>
         <div class="form-group" style="margin-bottom: 10px">
             <label asp-for="CityPicture" class="control-label"></label>
-            <input asp-for="CityPicture" class="form-control" />
+            <input asp-for="CityPicture" class="form-control" required/>
             <span asp-validation-for="CityPicture" class="text-danger"></span>
         </div>
         <div class="form-group" style="margin-bottom: 10px">
             <label asp-for="Street" class="control-label"></label>
-            <input asp-for="Street" class="form-control" />
+            <input asp-for="Street" class="form-control" pattern=".{3,}" required title="3 characters minimum"/>
             <span asp-validation-for="Street" class="text-danger"></span>
         </div>
         <div class="form-group" style="margin-bottom: 10px">
             <label asp-for="Street_Number" class="control-label"></label>
-            <input asp-for="Street_Number" class="form-control" type="number" min="0"/>
+            <input asp-for="Street_Number" class="form-control" type="number" min="0" required />
             <span asp-validation-for="Street_Number" class="text-danger"></span>
         </div>
         <br />
