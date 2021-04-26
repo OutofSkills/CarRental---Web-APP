@@ -81,7 +81,7 @@ namespace Car_Rental.Migrations
                     b.Property<float>("AverageScore")
                         .HasColumnType("real");
 
-                    b.Property<string>("Category_Name")
+                    b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("ClimateControll")
@@ -109,14 +109,14 @@ namespace Car_Rental.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Type_ID")
+                    b.Property<int>("TypeID")
                         .HasColumnType("int");
 
                     b.HasKey("CarID");
 
-                    b.HasIndex("Category_Name");
+                    b.HasIndex("CategoryName");
 
-                    b.HasIndex("Type_ID");
+                    b.HasIndex("TypeID");
 
                     b.ToTable("Cars");
                 });
@@ -144,13 +144,20 @@ namespace Car_Rental.Migrations
 
             modelBuilder.Entity("Car_Rental.Models.CarLocation", b =>
                 {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("CarID")
                         .HasColumnType("int");
 
                     b.Property<int>("LocationID")
                         .HasColumnType("int");
 
-                    b.HasKey("CarID", "LocationID");
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarID");
 
                     b.HasIndex("LocationID");
 
@@ -159,7 +166,7 @@ namespace Car_Rental.Migrations
 
             modelBuilder.Entity("Car_Rental.Models.CarTypes", b =>
                 {
-                    b.Property<int>("Type_ID")
+                    b.Property<int>("TypeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -177,7 +184,7 @@ namespace Car_Rental.Migrations
                     b.Property<int>("Number_Suitacases")
                         .HasColumnType("int");
 
-                    b.HasKey("Type_ID");
+                    b.HasKey("TypeID");
 
                     b.ToTable("CarTypes");
                 });
@@ -369,11 +376,13 @@ namespace Car_Rental.Migrations
                 {
                     b.HasOne("Car_Rental.Models.CarCategory", "Category")
                         .WithMany("Cars")
-                        .HasForeignKey("Category_Name");
+                        .HasForeignKey("CategoryName");
 
                     b.HasOne("Car_Rental.Models.CarTypes", "Type")
                         .WithMany("Cars")
-                        .HasForeignKey("Type_ID");
+                        .HasForeignKey("TypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Car_Rental.Models.CarLocation", b =>

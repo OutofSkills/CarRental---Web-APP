@@ -9,7 +9,7 @@ namespace Car_Rental.Models
     public class CarTypes
     {
         [Key]
-        public int Type_ID { get; set; }
+        public int TypeID { get; set; }
         [Required]
         [MinLength(3)]
         public string Name { get; set; }

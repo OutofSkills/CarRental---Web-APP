@@ -42,7 +42,7 @@ namespace Car_Rental.Migrations
                 name: "CarTypes",
                 columns: table => new
                 {
-                    Type_ID = table.Column<int>(nullable: false)
+                    TypeID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Number_Passengers = table.Column<int>(nullable: false),
@@ -51,7 +51,7 @@ namespace Car_Rental.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarTypes", x => x.Type_ID);
+                    table.PrimaryKey("PK_CarTypes", x => x.TypeID);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,24 +156,24 @@ namespace Car_Rental.Migrations
                     Acceleration = table.Column<float>(nullable: false),
                     TransmisionType = table.Column<string>(nullable: false),
                     ClimateControll = table.Column<bool>(nullable: false),
-                    Category_Name = table.Column<string>(nullable: true),
-                    Type_ID = table.Column<int>(nullable: true)
+                    TypeID = table.Column<int>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.CarID);
                     table.ForeignKey(
-                        name: "FK_Cars_Categories_Category_Name",
-                        column: x => x.Category_Name,
+                        name: "FK_Cars_Categories_CategoryName",
+                        column: x => x.CategoryName,
                         principalTable: "Categories",
                         principalColumn: "Category_Name",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Cars_CarTypes_Type_ID",
-                        column: x => x.Type_ID,
+                        name: "FK_Cars_CarTypes_TypeID",
+                        column: x => x.TypeID,
                         principalTable: "CarTypes",
-                        principalColumn: "Type_ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "TypeID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,12 +217,14 @@ namespace Car_Rental.Migrations
                 name: "CarLocation",
                 columns: table => new
                 {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CarID = table.Column<int>(nullable: false),
                     LocationID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarLocation", x => new { x.CarID, x.LocationID });
+                    table.PrimaryKey("PK_CarLocation", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CarLocation_Cars_CarID",
                         column: x => x.CarID,
@@ -285,19 +287,24 @@ namespace Car_Rental.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CarLocation_CarID",
+                table: "CarLocation",
+                column: "CarID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CarLocation_LocationID",
                 table: "CarLocation",
                 column: "LocationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_Category_Name",
+                name: "IX_Cars_CategoryName",
                 table: "Cars",
-                column: "Category_Name");
+                column: "CategoryName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_Type_ID",
+                name: "IX_Cars_TypeID",
                 table: "Cars",
-                column: "Type_ID");
+                column: "TypeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_BlackListID",

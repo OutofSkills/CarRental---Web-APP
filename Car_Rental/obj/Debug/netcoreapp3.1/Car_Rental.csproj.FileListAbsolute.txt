@@ -157,7 +157,6 @@ C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\CarCategories\Create.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\CarCategories\Listing.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Cars\Create.cshtml.g.cs
-C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Cars\Delete.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Cars\Edit.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Cars\Listing.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs

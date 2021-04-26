@@ -31,10 +31,10 @@ namespace Car_Rental
         {
             services.AddControllersWithViews();
             services.AddDbContext<CarRentalContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<ICarsRepository, CarsRepository>();
-            services.AddTransient<ICarCategoryRepository, CarCategoryRepository>();
-            services.AddTransient<ICarTypeRepository, CarTypeRepository>();
-            services.AddTransient<ILocationsRepository, LocationsRepository>();
+            services.AddScoped<ICarsRepository, CarsRepository>();
+            services.AddScoped<ICarCategoryRepository, CarCategoryRepository>();
+            services.AddScoped<ICarTypeRepository, CarTypeRepository>();
+            services.AddScoped<ILocationsRepository, LocationsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,69 +1,133 @@
-﻿@model Car_Rental.Models.Car
+﻿@model Car
 
-@{
-    ViewData["Title"] = "Edit";
-}
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Edit</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <!--Bootstrap-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <!--Local CSS-->
+    <link rel="stylesheet" href="C:\Users\kojoc\OneDrive\Рабочий стол\CarRental\Frontend\CSS\New_Car.css">
+    <title>New Car</title>
 
-<h4>Car</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CarID" />
-            <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid" style="margin-top: auto;">
+        <div class="row">
+            <div class="col-3"></div>
+
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 style="text-align: center;">New Car</h5>
+                    </div>
+                    <div class="card-body">
+                        <!--New car form-->
+                        <form class="row g-3" asp-action="Edit">
+                            <div class="form-group col-md-6">
+                                @Html.HiddenFor(model => model.CarID)
+                                <div class="form-group col-md-6">
+                                    @{ 
+                                        List<string> categories = new List<string>();
+                                        categories = ViewBag.Category_Names;
+                                        categories.Remove(Model.Category.Category_Name);
+                                    }
+                                    <label asp-for="Category" class="control-label"></label>
+                                    <select asp-for="Category" name="Category_Name" class="form-select"
+                                            asp-items="@(new SelectList(categories))">
+                                        <option selected>@Model.Category.Category_Name</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Model" class="control-label"></label>
+                                <input asp-for="Model" class="form-control" />
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="FuelType" class="control-label"></label>
+                                <input asp-for="FuelType" class="form-control" />
+                                <span asp-validation-for="FuelType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="TransmisionType" class="control-label"></label>
+                                <input asp-for="TransmisionType" class="form-control" />
+                                <span asp-validation-for="TransmisionType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Type" class="control-label"></label>
+                                <select asp-for="Type" name="TypeName" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.TypeNames))">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Acceleration" class="control-label"></label>
+                                <input asp-for="Acceleration" class="form-control" step="0.01" />
+                                <span asp-validation-for="Acceleration" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Fabrication_Date" class="control-label"></label>
+                                <input asp-for="Fabrication_Date" class="form-control" />
+                                <span asp-validation-for="Fabrication_Date" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="PictureURL" class="control-label"></label>
+                                <input asp-for="PictureURL" class="form-control" />
+                                <span asp-validation-for="PictureURL" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="PricePerDay" class="control-label"></label>
+                                <input asp-for="PricePerDay" class="form-control" step="0.01" />
+                                <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @{
+                                    List<Location> list = ViewBag.locationNames;
+                                }
+                                <label class="control-label">Locations</label><br />
+                                @for (int i = 0; i < list.Count; i++)
+                                {
+                                    
+                                        var carLocations = Model.CarLocations.Where(l => l.CarID == Model.CarID).ToList();
+                                        List<Location> locations = new List<Location>();
+
+                                        foreach (var location in carLocations)
+                                            locations.Add(location.Location);
+                                    <input name="AreChecked" class="form-check-input" type="checkbox" value="@list.ElementAt(i).Location_ID" @(locations.Contains(list.ElementAt(i)) ? "checked='checked'":"")/> @list.ElementAt(i).City <br />
+                                }
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="ClimateControll" class="control-label"></label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="ClimateControll" />
+                                </label>
+                            </div>
+                            <div class="form-group col-12" style="text-align: center;">
+                                <button type="submit" value="Edit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PictureURL" class="control-label"></label>
-                <input asp-for="PictureURL" class="form-control" />
-                <span asp-validation-for="PictureURL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuelType" class="control-label"></label>
-                <input asp-for="FuelType" class="form-control" />
-                <span asp-validation-for="FuelType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fabrication_Date" class="control-label"></label>
-                <input asp-for="Fabrication_Date" class="form-control" />
-                <span asp-validation-for="Fabrication_Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AverageScore" class="control-label"></label>
-                <input asp-for="AverageScore" class="form-control" />
-                <span asp-validation-for="AverageScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Acceleration" class="control-label"></label>
-                <input asp-for="Acceleration" class="form-control" />
-                <span asp-validation-for="Acceleration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransmisionType" class="control-label"></label>
-                <input asp-for="TransmisionType" class="form-control" />
-                <span asp-validation-for="TransmisionType" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ClimateControll" /> @Html.DisplayNameFor(model => model.ClimateControll)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+            <div class="col-3"></div>
+        </div><br>
+
     </div>
-</div>
+</body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</html>

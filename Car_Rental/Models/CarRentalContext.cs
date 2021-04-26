@@ -13,21 +13,19 @@ namespace Car_Rental.Models
         /*Configure Many to many*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*set the join table's keys*/
-            modelBuilder.Entity<CarLocation>()
-                .HasKey(carLoc => new { carLoc.CarID, carLoc.LocationID});
-
             /*relation between Car and several Locations*/
             modelBuilder.Entity<CarLocation>()
                 .HasOne(carLoc => carLoc.Car)
                 .WithMany(carLoc => carLoc.CarLocations)
-                .HasForeignKey(carLoc => carLoc.CarID);
+                .HasForeignKey(carLoc => carLoc.CarID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             /*relation between Location and several Cars*/
             modelBuilder.Entity<CarLocation>()
                 .HasOne(carLoc => carLoc.Location)
                 .WithMany(carLoc => carLoc.CarsAtLocation)
-                .HasForeignKey(carLoc => carLoc.LocationID);
+                .HasForeignKey(carLoc => carLoc.LocationID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Address> Addresses { get; set; }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Car>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,7 @@
                 <div class="row">
                     <div class="col-md"></div>
                     <div class="col-md-4">
-                        <form class="d-flex" asp-action="Search" asp-route-category=@ViewBag.Category_Name style="display: flex; justify-content: end;">
+                        <form class="d-flex" asp-controller="Cars" asp-action="Search" asp-route-category=@ViewBag.Category_Name style="display: flex; justify-content: end;">
                             <input class="form-control me-2" type="search" name="searchedCarModel" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-primary" type="submit">Search</button>
                         </form>
@@ -52,8 +53,8 @@
 
     <div class="row">
         <div class="col" style="text-align:start">
-            <a href="" onClick="history.go(-1); return false;" class="btn btn-outline-primary">
-               Back
+            <a href="" onClick="window.history.back(); return false;" class="btn btn-outline-primary">
+                Back
             </a>
         </div>
         <div class="col" style="text-align:end">
@@ -134,18 +135,35 @@
                         </div>
 
                         <div class="card-footer">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal"
-                                            data-bs-target="#details-@Model.ElementAt(i).CarID">
-                                        Details
-                                    </button>
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-primary btn-info" data-bs-toggle="modal"
+                                                data-bs-target="#details-@Model.ElementAt(i).CarID">
+                                            Details
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
+                                                data-bs-target="#reservationModal">
+                                            Book now
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-success btn-block" data-bs-toggle="modal"
-                                            data-bs-target="#reservationModal">
-                                        Book now
-                                    </button>
+                                <!--Delete and Edit buttons-->
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        @using (Html.BeginForm("Edit", "Cars", new { id = @Model.ElementAt(i).CarID }, FormMethod.Get))
+                                        {
+                                            <button  class="btn btn-success btn-block">Edit</button>
+                                        }
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-primary btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#removeCarModal-@Model.ElementAt(i).CarID">
+                                            Remove
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +216,37 @@
                         </div>
                     </div>
                 </div>
-             }
+
+                <!--Modal remove car pop-up-->
+                <div class="modal fade" id="removeCarModal-@Model.ElementAt(i).CarID" tabindex="-1" role="dialog" aria-labelledby="removeCarModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="form">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="removeCarModalLabel" style="font-size: 16pt;font-weight: bold; color:red">
+                                    Remove
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--Modal-Form-->
+                                <form role="form">
+                                    <div class="form-group row">
+                                        <div class="form-group">
+                                            Are you sure you want to remove <span style="font-weight:bold">@Model.ElementAt(i).Model</span> ?
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button id="removeButton" type="submit" onclick="alert('Success')" asp-controller="Cars" asp-action="Delete" asp-route-id=@Model.ElementAt(i).CarID class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
         <!--Some space between body and footer-->
         <br><br>

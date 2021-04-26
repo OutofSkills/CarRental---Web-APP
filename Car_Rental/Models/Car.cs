@@ -44,9 +44,14 @@ namespace Car_Rental.Models
         [Display(Name = "Climate Control")]
         public bool ClimateControll { get; set; }
 
+        public int TypeID { get; set; }
+        public string CategoryName { get; set; }
+
         [JsonIgnore]
+        [ForeignKey("CategoryName")]
         public CarCategory Category { get; set; }
         [JsonIgnore]
+        [ForeignKey("TypeID")]
         public CarTypes Type { get; set; }
         [JsonIgnore]
         public ICollection<CarLocation> CarLocations { get; set; }

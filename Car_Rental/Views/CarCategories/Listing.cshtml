@@ -83,9 +83,47 @@
                             <p class="card-text"><span style="font-weight: bold;">Medium Price/Day: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).AveragePrice) $</p>
                             <p class="card-text"><span style="font-weight: bold;">Number of Cars: </span>@Html.DisplayFor(modelItem => Model.ElementAt(i).NumberOfCars)</p>
                         </div>
+                        <div class="card-footer">
+                            <div class="container-fluid">
+                                <button type="button" class="btn btn-primary btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#removeCategModal-@Model.ElementAt(i).Category_Name">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--End of the card code-->
+
+                <!--Modal remove category pop-up-->
+                <div class="modal fade" id="removeCategModal-@Model.ElementAt(i).Category_Name" tabindex="-1" role="dialog" aria-labelledby="removeCategModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="form">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="removeCategModalLabel" style="font-size: 16pt;font-weight: bold; color:red">
+                                    Remove
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--Modal-Form-->
+                                <form role="form">
+                                    <div class="form-group row">
+                                        <div class="form-group">
+                                            Are you sure you want to remove <span style="font-weight:bold">@Model.ElementAt(i).Category_Name</span> ?
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button id="removeButton" type="submit" onclick="alert('Success')" asp-controller="CarCategories" asp-action="Delete" asp-route-id=@Model.ElementAt(i).Category_Name class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </div>

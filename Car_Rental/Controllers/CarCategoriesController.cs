@@ -62,5 +62,25 @@ namespace Car_Rental.Controllers
 
             return View();
         }
+
+        /// <summary>
+        /// Remove a selected car from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+            var categToDelete = await _categoriesRepo.GetCategoryByIDAsync(id);
+            if (categToDelete != null)
+            {
+                await _categoriesRepo.DeleteCategory(categToDelete.Category_Name);
+                await _categoriesRepo.SaveAsync();
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

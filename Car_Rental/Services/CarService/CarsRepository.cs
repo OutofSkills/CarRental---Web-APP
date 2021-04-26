@@ -16,15 +16,17 @@ namespace Car_Rental.Services.CarServices
             _context = context;
         }
 
-        public async Task DeleteCar(int carId)
+        public void DeleteCar(Car car)
         {
-            var carToDelete = await _context.Cars.FindAsync(carId);
-            _context.Cars.Remove(carToDelete);
+            _context.Cars.Remove(car);
         }
 
-        public async Task<Car> GetCarByIDAsync(int carId)
+        public Car GetCarByID(int carId)
         {
-            return await _context.Cars.FindAsync(carId);
+            return _context.Cars.Where(c=> c.CarID == carId).Include(c=>c.Category)
+                                                                           .Include(c=>c.Type)
+                                                                           .Include(c=>c.CarLocations).ThenInclude(c=>c.Location)
+                                                                           .FirstOrDefault();
         }
 
         public async Task<IEnumerable<Car>> GetCarsAsync()
@@ -45,9 +47,13 @@ namespace Car_Rental.Services.CarServices
             await _context.SaveChangesAsync();
         }
 
+        //NU MERGE
         public void UpdateCar(Car car)
         {
-            _context.Cars.Update(car);
+            //var existingCar = GetCarByID(car.CarID);
+            //_context.Entry(existingCar).CurrentValues.SetValues(car);
+
+            _context.Update(car);
         }
     }
 }

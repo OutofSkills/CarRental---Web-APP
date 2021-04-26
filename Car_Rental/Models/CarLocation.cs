@@ -8,6 +8,8 @@ namespace Car_Rental.Models
 {
     public class CarLocation
     {
+        [Key]
+        public int ID { get; set; }
         public int CarID { get; set; }
         public Car Car { get; set; }
         public int LocationID { get; set; }

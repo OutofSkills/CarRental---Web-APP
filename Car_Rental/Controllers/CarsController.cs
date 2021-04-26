@@ -72,23 +72,7 @@ namespace Car_Rental.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var categories = await _categoriesRepo.GetCategoriesAsync();
-            var bodyTypes = await _typesRepo.GetBodyTypesAsync();
-            var locations = await _locationsRepo.GetLocationsAsync();
-
-            List<string> categorieNames = new List<string>();
-            List<string> typeNames = new List<string>();
-
-            /*get the existing categories name and body types name*/
-            foreach (var item in categories)
-                categorieNames.Add(item.Category_Name);
-            foreach (var item in bodyTypes)
-                typeNames.Add(item.Name);
-
-            ViewBag.Category_Names = categorieNames;
-            ViewBag.TypeNames = typeNames;
-            ViewBag.LocationNames = locations;
-
+            await SeedCarView();
             return View();
         }
 
@@ -117,32 +101,39 @@ namespace Car_Rental.Controllers
             ViewBag.TypeNames = typeNames;
             ViewBag.LocationNames = locations;
 
-            /*get selections from dropdown form*/
-            string categSelection = Request.Form["Category_Name"].ToString();
-            string bodySelection = Request.Form["TypeName"].ToString();
-            var selectedLocations = Request.Form["AreChecked"].ToList();
-
-            var selectedCategory = await _categoriesRepo.GetCategoryByIDAsync(categSelection);
-            var selectedBodyType = await _typesRepo.GetBodyTypeByNameAsync(bodySelection);
-
-            car.Category = selectedCategory;
-            /*Increment the number of cars in this category*/
-            car.Category.NumberOfCars = car.Category.Cars.Count + 1;
-            car.Type = selectedBodyType;
-
-            foreach (var sel in selectedLocations)
+            if (ModelState.IsValid)
             {
-                CarLocation carLocation = new CarLocation();
-                carLocation.Car = car;
+                /*get selections from dropdown form*/
+                string categSelection = Request.Form["Category_Name"].ToString();
+                string bodySelection = Request.Form["TypeName"].ToString();
+                var selectedLocations = Request.Form["AreChecked"].ToList();
 
-                var location =  _locationsRepo.GetLocationByID(Int32.Parse(sel));
-                carLocation.Location = location;
+                var selectedCategory = await _categoriesRepo.GetCategoryByIDAsync(categSelection);
+                var selectedBodyType = await _typesRepo.GetBodyTypeByNameAsync(bodySelection);
 
-                car.CarLocations.Add(carLocation);
+                car.Category = selectedCategory;
+                /*Increment the number of cars in this category*/
+                car.Category.NumberOfCars = car.Category.Cars.Count + 1;
+                car.Type = selectedBodyType;
+
+                foreach (var sel in selectedLocations)
+                {
+                    CarLocation carLocation = new CarLocation
+                    {
+                        Car = car
+                    };
+
+                    var location = _locationsRepo.GetLocationByID(Int32.Parse(sel));
+                    carLocation.Location = location;
+
+                    car.CarLocations.Add(carLocation);
+                }
+
+                _carsRepo.InsertCar(car);
+                await _carsRepo.SaveAsync();
+
+                return RedirectToAction("Listing");
             }
-
-            _carsRepo.InsertCar(car);
-            await _carsRepo.SaveAsync();
 
             return View(car);
         }
@@ -159,7 +150,7 @@ namespace Car_Rental.Controllers
             if (!string.IsNullOrEmpty(category))
             {
                 List<Car> carsInCategory = new List<Car>();
-                if (category == "All the Cars")
+                if (category.Contains("All the Cars"))
                 {
                     ViewBag.Category_Name = "All the Cars";
                     ViewBag.Description = "Choose the best car from all the categories";
@@ -168,6 +159,10 @@ namespace Car_Rental.Controllers
                     {
                         var matchedCars = cars.Where(car => car.Model.ToLower().Contains(searchedCarModel.ToLower())).ToList();
                         return View("Listing", matchedCars);
+                    }
+                    else
+                    {
+                        return View("Listing", cars);
                     }
                 }
                 else
@@ -194,6 +189,131 @@ namespace Car_Rental.Controllers
 
                 return View("Listing", cars);
             }
+        }
+
+        /// <summary>
+        /// Return the form for editing a car details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            await SeedCarView();
+
+            var carToEdit = _carsRepo.GetCarByID(id);
+
+            if (carToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(carToEdit);
+        }
+
+        /// <summary>
+        /// Edits a car's record in database
+        /// </summary>
+        /// <param name="car"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(Car car)
+        {
+            await SeedCarView();
+
+            if (ModelState.IsValid)
+            {
+                /*get selections from dropdown form*/
+                string categSelection = Request.Form["Category_Name"].ToString();
+                string bodySelection = Request.Form["TypeName"].ToString();
+                var selectedLocations = Request.Form["AreChecked"].ToList();
+
+                var selectedCategory = await _categoriesRepo.GetCategoryByIDAsync(categSelection);
+                var selectedBodyType = await _typesRepo.GetBodyTypeByNameAsync(bodySelection);
+
+                var carToBeUpdated = _carsRepo.GetCarByID(car.CarID);
+                carToBeUpdated.CarLocations.Clear();
+                foreach (var sel in selectedLocations)
+                {
+                    var location = _locationsRepo.GetLocationByID(Int32.Parse(sel));
+
+                    CarLocation carLocation = new CarLocation
+                    {
+                        CarID= car.CarID,
+                        LocationID = location.Location_ID,
+                        Car = car,
+                        Location = location
+                    };
+
+                    carToBeUpdated.CarLocations.Add(carLocation);
+                }
+
+                carToBeUpdated.Category = selectedCategory;
+                carToBeUpdated.CategoryName = categSelection;
+                /*Increment the number of cars in this category*/
+                carToBeUpdated.Category.NumberOfCars = carToBeUpdated.Category.Cars.Count + 1;
+                carToBeUpdated.Type = selectedBodyType;
+                carToBeUpdated.TypeID = selectedBodyType.TypeID;
+                carToBeUpdated.Acceleration = car.Acceleration;
+                carToBeUpdated.ClimateControll = car.ClimateControll;
+                carToBeUpdated.Fabrication_Date = car.Fabrication_Date;
+                carToBeUpdated.FuelType = car.FuelType;
+                carToBeUpdated.Model = car.Model;
+                carToBeUpdated.PictureURL = car.PictureURL;
+                carToBeUpdated.TransmisionType = car.TransmisionType;
+                carToBeUpdated.PricePerDay = car.PricePerDay;
+
+                //_carsRepo.UpdateCar(carToBeUpdated);
+                await _carsRepo.SaveAsync();
+
+                return RedirectToAction("Listing");
+            }
+
+            return View(car);
+        }
+
+        /// <summary>
+        /// Remove a selected car from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var carToDelete =  _carsRepo.GetCarByID(id);
+            if (carToDelete != null)
+            {
+                _carsRepo.DeleteCar(carToDelete);
+                await _carsRepo.SaveAsync();
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Add categories, body types and locations to car forms
+        /// </summary>
+        /// <returns></returns>
+        private async Task SeedCarView()
+        {
+            var categories = await _categoriesRepo.GetCategoriesAsync();
+            var bodyTypes = await _typesRepo.GetBodyTypesAsync();
+            var locations = await _locationsRepo.GetLocationsAsync();
+
+            List<string> categorieNames = new List<string>();
+            List<string> typeNames = new List<string>();
+
+            /*get the existing categories name and body types name*/
+            foreach (var item in categories)
+                categorieNames.Add(item.Category_Name);
+            foreach (var item in bodyTypes)
+                typeNames.Add(item.Name);
+
+            ViewBag.Category_Names = categorieNames;
+            ViewBag.TypeNames = typeNames;
+            ViewBag.LocationNames = locations;
         }
     }
 }
