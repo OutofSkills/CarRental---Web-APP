@@ -10,7 +10,7 @@ namespace Car_Rental.Services.CustomerService
     public interface ICustomerRepository 
     {
         Task<IEnumerable<Customer>> GetCustomersAsync();
-        Customer GetCustomerByID(int customerId);
+        Customer GetCustomerByUsername(string username);
         Task SaveAsync();
         void DeleteCustomer(Customer customer);
         void InsertCustomer(Customer customer);

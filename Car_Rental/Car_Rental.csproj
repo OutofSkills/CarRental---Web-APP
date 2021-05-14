@@ -31,6 +31,8 @@
     <None Include="wwwroot\css\Cars.css" />
     <None Include="wwwroot\css\LocationsStyle.css" />
     <None Include="wwwroot\css\LoginStyle.css" />
+    <None Include="wwwroot\css\ProfileStyle.css" />
+    <None Include="wwwroot\css\SettingsStyle.css" />
     <None Include="wwwroot\js\car_rating.js" />
     <None Include="wwwroot\js\Login.js" />
     <None Include="wwwroot\Pictures\Avatars\User_avatar.jpg" />

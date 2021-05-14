@@ -21,10 +21,10 @@ namespace Car_Rental.Services.CustomerService
             _context.Customers.Remove(customer);
         }
 
-        public Customer GetCustomerByID(int customerId)
+        public Customer GetCustomerByUsername(string username)
         {
-            return _context.Customers.Where(c => c.CustomerID == customerId).Include(c => c.Address)
-                                                                           .FirstOrDefault();
+            return _context.Customers.Where(c => c.UserName == username).Include(c => c.Address)
+                                                                        .FirstOrDefault();
         }
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync()

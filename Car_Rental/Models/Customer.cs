@@ -18,6 +18,8 @@ namespace Car_Rental.Models
         public string LastName { get; set; }
         public override string PhoneNumber { get; set; }
 
+        public byte[] Image { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public override string Email { get; set; }
