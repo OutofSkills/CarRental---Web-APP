@@ -4,28 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Car_Rental.Models
 {
-    public class Customer
+    public class Customer: IdentityUser<int>
     {
         [Key]
-        public int Customer_ID { get; set; }
+        public int CustomerID { get; set; }
         [Required]
-        public string First_Name { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string Second_Name { get; set; }
-        public string Phone_Number { get; set; }
+        public string LastName { get; set; }
+        public override string PhoneNumber { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-        public string Username { get; set; }
+        public override string Email { get; set; }
 
+        [NotMapped]
+        [MinLength(6, ErrorMessage = "The password's lenght should be at least 6.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public Role Role { get; set; }
-        [ForeignKey("Customer_ID")]
+        [ForeignKey("CustomerID")]
         public Address Address { get; set; }
         public BlackList BlackList { get; set; }
 

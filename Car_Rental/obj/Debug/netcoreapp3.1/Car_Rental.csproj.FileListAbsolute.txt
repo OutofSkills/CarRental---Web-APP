@@ -175,3 +175,16 @@ C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Car_Rental.csprojAssemblyReference.cache
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Locations\Listing.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Locations\Create.cshtml.g.cs
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Car_Rental.StaticWebAssets.xml
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Car_Rental.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Security\Login.cshtml.g.cs

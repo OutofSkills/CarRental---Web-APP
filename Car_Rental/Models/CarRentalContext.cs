@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Car_Rental.Models
 {
-    public class CarRentalContext : DbContext
+    public class CarRentalContext : IdentityDbContext<Customer, Role, int>
     {
-        public CarRentalContext(DbContextOptions options) : base(options) { }
+        public CarRentalContext(DbContextOptions<CarRentalContext> options) : base(options) { }
 
         /*Configure Many to many*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,8 @@ namespace Car_Rental.Models
                 .WithMany(carLoc => carLoc.CarsAtLocation)
                 .HasForeignKey(carLoc => carLoc.LocationID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Address> Addresses { get; set; }
@@ -38,7 +41,7 @@ namespace Car_Rental.Models
         public DbSet<Location> Locations { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public override DbSet<Role> Roles { get; set; }
         public DbSet<Status> Statuses { get; set; }
     }
 }

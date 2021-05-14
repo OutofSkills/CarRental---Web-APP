@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Car_Rental.Services.CustomerService;
 
 namespace Car_Rental
 {
@@ -29,12 +31,27 @@ namespace Car_Rental
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<Customer, Role>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password = new PasswordOptions
+                {
+                    RequireDigit = true,
+                    RequiredLength = 6,
+                    RequireLowercase = false,
+                    RequireUppercase = false,
+                    RequireNonAlphanumeric = false
+                };
+            }).AddEntityFrameworkStores<CarRentalContext>();
+
             services.AddControllersWithViews();
+     
             services.AddDbContext<CarRentalContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICarsRepository, CarsRepository>();
             services.AddScoped<ICarCategoryRepository, CarCategoryRepository>();
             services.AddScoped<ICarTypeRepository, CarTypeRepository>();
             services.AddScoped<ILocationsRepository, LocationsRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +72,7 @@ namespace Car_Rental
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
       <PrivateAssets>all</PrivateAssets>
@@ -28,7 +30,9 @@
     <None Include="wwwroot\css\CarCategoriesStyle.css" />
     <None Include="wwwroot\css\Cars.css" />
     <None Include="wwwroot\css\LocationsStyle.css" />
+    <None Include="wwwroot\css\LoginStyle.css" />
     <None Include="wwwroot\js\car_rating.js" />
+    <None Include="wwwroot\js\Login.js" />
     <None Include="wwwroot\Pictures\Avatars\User_avatar.jpg" />
     <None Include="wwwroot\Pictures\Avatars\User_avatar_V2.png" />
     <None Include="wwwroot\Pictures\Cars\all_types.jpg" />
