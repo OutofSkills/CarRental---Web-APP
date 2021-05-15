@@ -19,6 +19,7 @@ namespace Car_Rental.Controllers
             _customerRepo = customerRepo;
         }
 
+        [HttpGet]
         public IActionResult ProfileAsync()
         {
             if (User.Identity.IsAuthenticated)
@@ -67,16 +68,17 @@ namespace Car_Rental.Controllers
             customerToUpdate.Address.Zip_Code = address.Zip_Code;
 
             //check email if valid
-            if (customerToUpdate.Email != customer.Email)
-            {
+            if (customer.UserName != customerToUpdate.UserName)
+            { 
                 var customers = await _customerRepo.GetCustomersAsync();
-                if (customers == null)
+
+                if (customers.Where(c => c.UserName == customer.UserName).Count() == 0)
                 {
-                    customerToUpdate.Email = customer.Email;
+                    customerToUpdate.UserName = customer.UserName;
                 }
                 else
                 {
-                    ViewBag.Message = "User with this email already exists";
+                    ViewBag.Message = "User with this username already exists";
                     ViewBag.EditStatus = 0;
 
                     ViewBag.Address = customerToUpdate.Address;
@@ -94,12 +96,6 @@ namespace Car_Rental.Controllers
 
             return View("Profile", customerToUpdate);
         }
-
-        public IActionResult Settings()
-        {
-            return View();
-        }
-
 
         #region Tools
         public ActionResult GetImage(string username)

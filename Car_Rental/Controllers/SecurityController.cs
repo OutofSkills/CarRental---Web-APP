@@ -1,4 +1,5 @@
 ﻿using Car_Rental.Models;
+using Car_Rental.Services.CustomerService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,11 +13,13 @@ namespace Car_Rental.Controllers
     {
         private UserManager<Customer> _userManager { get; set; }
         private SignInManager<Customer> _signInManager { get; set; }
+        private readonly ICustomerRepository _customerRepo;
 
-       public SecurityController(UserManager<Customer> userManager, SignInManager<Customer> signInManager)
+        public SecurityController(UserManager<Customer> userManager, SignInManager<Customer> signInManager, ICustomerRepository customerRepo)
        {
             _userManager = userManager;
             _signInManager = signInManager;
+            _customerRepo = customerRepo;
        }
 
         [HttpGet]
@@ -29,8 +32,16 @@ namespace Car_Rental.Controllers
         public async Task<IActionResult> Login([Bind("Email", "Password")] Customer customer)
         {
             Customer user = await _userManager.FindByEmailAsync(customer.Email);
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, customer.Password, false, false);
 
+            if(user == null)
+            {
+                ViewBag.LoginFlag = 0;
+                ViewBag.Result = "Wrong email";
+
+                return View();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, customer.Password, false, false);
             if(result.Succeeded)
             {
                 ViewBag.Result = "Welcome, " + user.UserName;
@@ -41,7 +52,7 @@ namespace Car_Rental.Controllers
             else
             {
                 ViewBag.LoginFlag = 0;
-                ViewBag.Result = "Wrong username or password ";
+                ViewBag.Result = "Wrong password ";
             }
 
             return View();
@@ -101,6 +112,61 @@ namespace Car_Rental.Controllers
             await _signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Settings()
+        {
+            Customer customer = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            return View(customer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeSettings(Customer customer, string currPassword)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var customers = await _customerRepo.GetCustomersAsync();
+                var matchedCustomers = customers.Where(c => c.Email == customer.Email);
+                var customerToUpdate = _customerRepo.GetCustomerByUsername(User.Identity.Name);
+
+                if (customer.Email != customerToUpdate.Email)
+                   if (matchedCustomers.Count() != 0)
+                   {
+                        ViewBag.Message = "User with this email is already registred";
+                        ViewBag.EditStatus = 0;
+
+                        return View("Settings", customerToUpdate);
+                    }
+
+                //set new username and hashed password
+                IdentityResult passwordResult = await _userManager.ChangePasswordAsync(customerToUpdate, currPassword, customer.Password);
+                if(passwordResult.Succeeded)
+                { 
+                     customerToUpdate.Email = customer.Email;
+                     customerToUpdate.NormalizedEmail = customer.Email;
+
+                     _customerRepo.UpdateCustomer(customerToUpdate);
+                     await _customerRepo.SaveAsync();
+
+                     ViewBag.Message = "Changes saved successfully";
+                     ViewBag.EditStatus = 1;
+
+                    return View("Settings", customerToUpdate);
+                }
+                else
+                {
+                     ViewBag.Message = passwordResult.Errors.FirstOrDefault().Code;
+                     ViewBag.EditStatus = 0;
+
+                    return View("Settings", customerToUpdate);
+                }
+                  
+            }
+
+            //shouldn't reach this code
+            return NotFound();
         }
     }
 }

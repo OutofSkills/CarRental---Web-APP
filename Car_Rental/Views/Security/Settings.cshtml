@@ -1,0 +1,137 @@
+﻿@model Customer
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!--JQUERY-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!--local CSS-->
+    <link rel="stylesheet" href="\css\SettingsStyle.css">
+
+    <title>User Settings</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!--User Settings-->
+    <div class="container-fluid" style="padding-left: 12%;padding-top: 5%;">
+        <div class="row gx-3 gy-3">
+            <!--User picture card-->
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    @if (Model.Image == null)
+                                    {
+                                        <img src="\Pictures\Avatars\User_avatar_V2.png"
+                                             alt="User">
+                                    }
+                                    else
+                                    {
+                                        <img class="rounded-circle" src="@Url.Action("GetImage", "Customer", new { username = Model.UserName })"
+                                             alt="User">
+                                    }
+                                </div>
+                                <h5 class="user-name">@Model.UserName</h5>
+                                <h6 class="user-email">@Model.Email</h6>
+                            </div>
+                            <div class="about">
+                                <h5>About</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Settings card-->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="card-title">Settings</div>
+                        <form action="ChangeSettings" method="post">
+                            @if (ViewBag.EditStatus == 1)
+                            {
+                                <div class="alert alert-success">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            else if (ViewBag.EditStatus == 0)
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password">Current Password</label>
+                                        <input type="password" class="form-control" id="password" name="currPassword" placeholder="Enter current password"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="psw">Password</label>
+                                        <input asp-for="Password" type="password" class="form-control" id="psw" placeholder="Enter password"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="confirmPass">Confirm password</label>
+                                        <input type="password" class="form-control" id="confirm_psw" placeholder="Confirm password"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!--Submit/Cancel buttons-->
+                            <div class="row gy-5">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-center">
+                                        <button type="button" id="cancel" name="Cancel" class="btn btn-secondary">Cancel</button>
+                                        <button type="submit" id="update" name="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+@section Scripts{
+    <script>
+        var password = document.getElementById("psw")
+            , confirm_password = document.getElementById("confirm_psw");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+}
