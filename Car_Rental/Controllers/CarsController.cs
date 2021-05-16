@@ -10,6 +10,7 @@ using Car_Rental.Services.CarServices;
 using Car_Rental.Services.CarCategoryServices;
 using Car_Rental.Services;
 using Car_Rental.Services.LocationService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Car_Rental.Controllers
 {

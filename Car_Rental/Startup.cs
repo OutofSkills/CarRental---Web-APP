@@ -16,6 +16,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Car_Rental.Services.CustomerService;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Car_Rental.Services.Reservations;
+using Car_Rental.Services.Coupons_Service;
+using Car_Rental.Services.ReservationStatus;
 
 namespace Car_Rental
 {
@@ -44,14 +48,30 @@ namespace Car_Rental
                 };
             }).AddEntityFrameworkStores<CarRentalContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Security/Login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+
             services.AddControllersWithViews();
      
             services.AddDbContext<CarRentalContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ICarsRepository, CarsRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<ICarCategoryRepository, CarCategoryRepository>();
             services.AddScoped<ICarTypeRepository, CarTypeRepository>();
             services.AddScoped<ILocationsRepository, LocationsRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICarsRepository, CarsRepository>();
+            services.AddScoped<ICouponsRepository, CouponsRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Car_Rental.Migrations
 {
-    public partial class addIdentity : Migration
+    public partial class reviewChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -91,6 +91,7 @@ namespace Car_Rental.Migrations
                 {
                     Coupon_ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(nullable: false),
                     Discount = table.Column<float>(nullable: false),
                     Expiration_Date = table.Column<DateTime>(nullable: false),
                     Details = table.Column<string>(nullable: true)
@@ -187,8 +188,8 @@ namespace Car_Rental.Migrations
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    Image = table.Column<byte[]>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: false),
-                    Password = table.Column<string>(nullable: true),
                     RoleId = table.Column<int>(nullable: true),
                     BlackListID = table.Column<int>(nullable: true)
                 },
@@ -365,9 +366,11 @@ namespace Car_Rental.Migrations
                 name: "Reservations",
                 columns: table => new
                 {
-                    Reservation_ID = table.Column<int>(nullable: false),
+                    Reservation_ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Start_Date = table.Column<DateTime>(nullable: false),
                     End_Date = table.Column<DateTime>(nullable: false),
+                    ReviewID = table.Column<int>(nullable: true),
                     CustomerId = table.Column<int>(nullable: true),
                     CarID = table.Column<int>(nullable: true),
                     Coupon_ID = table.Column<int>(nullable: true),
@@ -395,8 +398,8 @@ namespace Car_Rental.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reservations_Reviews_Reservation_ID",
-                        column: x => x.Reservation_ID,
+                        name: "FK_Reservations_Reviews_ReviewID",
+                        column: x => x.ReviewID,
                         principalTable: "Reviews",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -497,6 +500,12 @@ namespace Car_Rental.Migrations
                 name: "IX_Reservations_CustomerId",
                 table: "Reservations",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_ReviewID",
+                table: "Reservations",
+                column: "ReviewID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_Status_ID",

@@ -15,12 +15,13 @@ namespace Car_Rental.Models
         public DateTime Start_Date { get; set; }
         [Required]
         public DateTime End_Date { get; set; }
+        public int ReviewID { get; set; }
 
         public Customer Customer { get; set; }
         public  Car Car { get; set; }
         public Coupon Coupon { get; set; }
         public Status Status { get; set; }
-        [ForeignKey("Reservation_ID")]
+
         public Review Review { get; set; }
     }
 }

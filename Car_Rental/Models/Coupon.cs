@@ -11,6 +11,8 @@ namespace Car_Rental.Models
         [Key]
         public int Coupon_ID { get; set; }
         [Required]
+        public string Code { get; set; }
+        [Required]
         public float Discount { get; set; }
         [Required]
         public DateTime Expiration_Date { get; set; }

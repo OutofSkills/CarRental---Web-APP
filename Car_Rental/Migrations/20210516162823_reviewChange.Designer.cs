@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car_Rental.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    [Migration("20210512153212_addIdentity")]
-    partial class addIdentity
+    [Migration("20210516162823_reviewChange")]
+    partial class reviewChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -198,6 +198,10 @@ namespace Car_Rental.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
@@ -244,6 +248,9 @@ namespace Car_Rental.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -261,9 +268,6 @@ namespace Car_Rental.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -341,7 +345,9 @@ namespace Car_Rental.Migrations
             modelBuilder.Entity("Car_Rental.Models.Reservation", b =>
                 {
                     b.Property<int>("Reservation_ID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CarID")
                         .HasColumnType("int");
@@ -354,6 +360,9 @@ namespace Car_Rental.Migrations
 
                     b.Property<DateTime>("End_Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ReviewID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Start_Date")
                         .HasColumnType("datetime2");
@@ -368,6 +377,9 @@ namespace Car_Rental.Migrations
                     b.HasIndex("Coupon_ID");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ReviewID")
+                        .IsUnique();
 
                     b.HasIndex("Status_ID");
 
@@ -607,7 +619,7 @@ namespace Car_Rental.Migrations
 
                     b.HasOne("Car_Rental.Models.Review", "Review")
                         .WithOne("Reservation")
-                        .HasForeignKey("Car_Rental.Models.Reservation", "Reservation_ID")
+                        .HasForeignKey("Car_Rental.Models.Reservation", "ReviewID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

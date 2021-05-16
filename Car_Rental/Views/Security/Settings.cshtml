@@ -50,62 +50,63 @@
                     <div class="card-body">
                         <div class="card-title">Settings</div>
                         <form action="ChangeSettings" method="post">
-                            @if (ViewBag.EditStatus == 1)
-                            {
-                                <div class="alert alert-success">
-                                    @ViewBag.Message
+                            <div class="container">
+                                <div class="form-group">
+                                    @if (ViewBag.EditStatus == 1)
+                                    {
+                                        <div class="alert alert-success">
+                                            @ViewBag.Message
+                                        </div>
+                                    }
+                                    else if (ViewBag.EditStatus == 0)
+                                    {
+                                        <div class="alert alert-danger">
+                                            @ViewBag.Message
+                                        </div>
+                                    }
                                 </div>
-                            }
-                            else if (ViewBag.EditStatus == 0)
-                            {
-                                <div class="alert alert-danger">
-                                    @ViewBag.Message
-                                </div>
-                            }
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="password">Current Password</label>
-                                        <input type="password" class="form-control" id="password" name="currPassword" placeholder="Enter current password"
-                                               required>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="password">Current Password</label>
+                                            <input type="password" class="form-control" id="password" name="currPassword" placeholder="Enter current password"
+                                                   required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="psw">Password</label>
-                                        <input asp-for="Password" type="password" class="form-control" id="psw" placeholder="Enter password"
-                                               required>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="psw">Password</label>
+                                            <input asp-for="Password" type="password" class="form-control" id="psw" placeholder="Enter password"
+                                                   required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="confirmPass">Confirm password</label>
-                                        <input type="password" class="form-control" id="confirm_psw" placeholder="Confirm password"
-                                               required>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="confirmPass">Confirm password</label>
+                                            <input type="password" class="form-control" id="confirm_psw" placeholder="Confirm password"
+                                                   required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <!--Submit/Cancel buttons-->
-                            <div class="row gy-5">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="text-center">
-                                        <button type="button" id="cancel" name="Cancel" class="btn btn-secondary">Cancel</button>
-                                        <button type="submit" id="update" name="submit" class="btn btn-primary">Update</button>
+                                <!--Submit/Cancel buttons-->
+                                <div class="row mb-2">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="text-center">
+                                            <button type="button" id="cancel" name="Cancel" class="btn btn-secondary">Cancel</button>
+                                            <button type="submit" id="update" name="submit" class="btn btn-primary">Update</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

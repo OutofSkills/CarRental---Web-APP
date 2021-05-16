@@ -44,6 +44,10 @@
                     </div>
                     <hr>
                 </div>
+                <!--Return Url-->
+                @{ 
+                    var returnUrl = @Context.Request.Query["returnurl"];
+                }
                 <!--Login form-->
                 <form id="login-form" action="Login" method="post">
                     <div class="imgcontainer">
@@ -64,6 +68,8 @@
                                 @ViewBag.Result
                             </div>
                         }
+
+                        <input type="hidden" name="returnUrl" value=@returnUrl>
 
                         <!--Email-->
                         <label><b>Email</b></label>

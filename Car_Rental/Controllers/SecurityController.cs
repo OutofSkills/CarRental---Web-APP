@@ -1,5 +1,6 @@
 ﻿using Car_Rental.Models;
 using Car_Rental.Services.CustomerService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,23 +14,28 @@ namespace Car_Rental.Controllers
     {
         private UserManager<Customer> _userManager { get; set; }
         private SignInManager<Customer> _signInManager { get; set; }
+        private RoleManager<Role> _roleManager { get; set; }
+
         private readonly ICustomerRepository _customerRepo;
 
-        public SecurityController(UserManager<Customer> userManager, SignInManager<Customer> signInManager, ICustomerRepository customerRepo)
-       {
+        public SecurityController(UserManager<Customer> userManager, SignInManager<Customer> signInManager, RoleManager<Role> roleManager, ICustomerRepository customerRepo)
+        {
             _userManager = userManager;
             _signInManager = signInManager;
             _customerRepo = customerRepo;
-       }
+            _roleManager = roleManager;
+        }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([Bind("Email", "Password")] Customer customer)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([Bind("Email", "Password")] Customer customer, string returnUrl)
         {
             Customer user = await _userManager.FindByEmailAsync(customer.Email);
 
@@ -47,7 +53,14 @@ namespace Car_Rental.Controllers
                 ViewBag.Result = "Welcome, " + user.UserName;
                 ViewBag.LoginFlag = 1;
 
-                //return RedirectToAction("Index", "Home");
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("index", "home");
+                }
             }
             else
             {
@@ -59,6 +72,7 @@ namespace Car_Rental.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(Customer customer)
         {
             try
@@ -84,6 +98,26 @@ namespace Car_Rental.Controllers
                     //set address
                     customer.Address = address;
 
+                    //set role
+                    var roleExist = await _roleManager.RoleExistsAsync("User");
+                    if(!roleExist)
+                    {
+                        var role = new Role();
+                        role.Name = "User";
+                        role.Details = "Basic user with basic attributes";
+
+                        var roleResult =  await _roleManager.CreateAsync(role);
+
+                        if(roleResult.Succeeded)
+                        {
+                            customer.Role = await _roleManager.FindByNameAsync("User");
+                        }
+                    }
+                    else
+                    {
+                        customer.Role = await _roleManager.FindByNameAsync("User");
+                    }
+
                     //set hashed password
                     IdentityResult result = await _userManager.CreateAsync(customer, customer.Password);
 
@@ -107,6 +141,7 @@ namespace Car_Rental.Controllers
             return View("Login");
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -115,14 +150,16 @@ namespace Car_Rental.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Settings()
         {
-            Customer customer = await _userManager.FindByNameAsync(User.Identity.Name);
+           Customer customer = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            return View(customer);
+           return View(customer);
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> ChangeSettings(Customer customer, string currPassword)
         {
             if (User.Identity.IsAuthenticated)
