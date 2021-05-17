@@ -191,3 +191,5 @@ C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Profile.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Security\Settings.cshtml.g.cs
 C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Reservations\MakeReservation.cshtml.g.cs
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Reservations\ViewReservations.cshtml.g.cs
+C:\Users\kojoc\Source\Repos\OutofSkills\CarRental---Web-APP\Car_Rental\obj\Debug\netcoreapp3.1\Razor\Views\Reservations\ViewHistory.cshtml.g.cs

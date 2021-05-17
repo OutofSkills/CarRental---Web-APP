@@ -63,12 +63,12 @@
                     We offers easy and convenient car rentals between many of its locations in Romania.
                     Choose from a great selection of vehicles, including economy, Full-size Sedans, SUVs, Mini, and Pickup Trucks.
                 </p>
-                <button type="button" class="btn btn-outline-dark">Take a look &raquo;</button>
+                <a type="button" class="btn btn-outline-dark" asp-action="Listing" asp-controller="Cars">Take a look &raquo;</a>
             </div>
             <div class="col-md-4">
                 <h2>New user</h2>
                 <p>Create an account where you can keep track of you latest boockings.</p>
-                <button type="button" class="btn btn-outline-dark">Sign in &raquo;</button>
+                <a type="button" class="btn btn-outline-dark" href="@Url.Action("Login", "Security")">Sign in &raquo;</a>
             </div>
             <div class="col-md-4">
                 <h2>Offers</h2>
@@ -78,7 +78,7 @@
                     Find best offer for you.
                 </p>
                 <p>
-                 <button type="button" class="btn btn-outline-dark">Rent now &raquo;</button>
+                 <a type="button" class="btn btn-outline-dark" asp-action="Listing" asp-controller="Cars">Rent now &raquo;</a>
                 </p>
             </div>
         </div>

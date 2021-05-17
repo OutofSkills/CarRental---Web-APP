@@ -44,10 +44,18 @@ namespace Car_Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> MakeReservationAsync(Reservation reservation, int idCar)
         {
+            var carToBook = _carsRepo.GetCarByID(idCar);
+            ViewBag.carToBook = carToBook;
+
             if (ModelState.IsValid)
             {
+                if (reservation.Start_Date > reservation.End_Date || reservation.Start_Date < DateTime.Now)
+                {
+                    ViewBag.Message = "Invalid time interval!";
+                    ViewBag.Flag = 0;
 
-
+                    return View(reservation);
+                }
 
                 var coupon = _couponsRepo.GetCouponByCode(reservation.Coupon.Code);
 
@@ -56,7 +64,6 @@ namespace Car_Rental.Controllers
                     reservation.Coupon = coupon;
                 }
 
-                var carToBook = _carsRepo.GetCarByID(idCar);
                 reservation.Car = carToBook;
 
                 var customer = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -71,8 +78,6 @@ namespace Car_Rental.Controllers
                 _reservationsRepo.InsertReservation(reservation);
                 await _reservationsRepo.SaveAsync();
 
-                ViewBag.carToBook = carToBook;
-
                 ViewBag.Message = "Car successfully booked";
                 ViewBag.Flag = 1;
 
@@ -83,6 +88,24 @@ namespace Car_Rental.Controllers
             ViewBag.Flag = 0;
 
             return View(reservation);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> ViewReservationsAsync()
+        {
+            var claims = User.Claims.ToList();
+            var resersevations = await _reservationsRepo.GetReservationsAsync();
+            var userReservations = resersevations.Where(r => r.Customer.UserName == User.Identity.Name);
+
+            return View(userReservations);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ViewHistoryAsync()
+        {
+            var resersevations = await _reservationsRepo.GetReservationsAsync();
+
+            return View(resersevations);
         }
     }
 }

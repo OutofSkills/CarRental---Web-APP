@@ -98,31 +98,33 @@ namespace Car_Rental.Controllers
                     //set address
                     customer.Address = address;
 
-                    //set role
-                    var roleExist = await _roleManager.RoleExistsAsync("User");
-                    if(!roleExist)
-                    {
-                        var role = new Role();
-                        role.Name = "User";
-                        role.Details = "Basic user with basic attributes";
-
-                        var roleResult =  await _roleManager.CreateAsync(role);
-
-                        if(roleResult.Succeeded)
-                        {
-                            customer.Role = await _roleManager.FindByNameAsync("User");
-                        }
-                    }
-                    else
-                    {
-                        customer.Role = await _roleManager.FindByNameAsync("User");
-                    }
-
                     //set hashed password
                     IdentityResult result = await _userManager.CreateAsync(customer, customer.Password);
 
                     if (result.Succeeded)
                     {
+                        //set role
+                        var roleExist = await _roleManager.RoleExistsAsync("User");
+                        if (!roleExist)
+                        {
+                            var role = new Role();
+                            role.Name = "User";
+                            role.Details = "Basic user with basic attributes";
+
+                            var roleResult = await _roleManager.CreateAsync(role);
+
+                            if (roleResult.Succeeded)
+                            {
+                                await _userManager.AddToRoleAsync(customer, "User");
+                                customer.Role = await _roleManager.FindByNameAsync("User");
+                            }
+                        }
+                        else
+                        {
+                            var resultRole = await _userManager.AddToRoleAsync(customer, "User");
+                            customer.Role = await _roleManager.FindByNameAsync("User");
+                        }
+
                         ViewBag.Message = "User was created";
                         ViewBag.Flag = 1;
                     }
@@ -136,7 +138,7 @@ namespace Car_Rental.Controllers
             catch(Exception e)
             {
                 ViewBag.Flag = 0;
-                ViewBag.Message = e.InnerException.Message;
+                ViewBag.Message = e.Message;
             }
             return View("Login");
         }

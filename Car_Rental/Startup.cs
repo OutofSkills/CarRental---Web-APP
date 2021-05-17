@@ -35,18 +35,20 @@ namespace Car_Rental
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<Customer, Role>(options =>
-            {
-                options.User.RequireUniqueEmail = true;
-                options.Password = new PasswordOptions
+            services.AddDefaultIdentity<Customer>(options =>
                 {
-                    RequireDigit = true,
-                    RequiredLength = 6,
-                    RequireLowercase = false,
-                    RequireUppercase = false,
-                    RequireNonAlphanumeric = false
-                };
-            }).AddEntityFrameworkStores<CarRentalContext>();
+                    options.User.RequireUniqueEmail = true;
+                    options.Password = new PasswordOptions
+                    {
+                        RequireDigit = true,
+                        RequiredLength = 6,
+                        RequireLowercase = false,
+                        RequireUppercase = false,
+                        RequireNonAlphanumeric = false
+                    };
+                })
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<CarRentalContext>();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -60,6 +62,10 @@ namespace Car_Rental
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });
+
+            services.AddAuthorization(options =>
+               options.AddPolicy("Admin", policy => policy.RequireRole("Admin"))
+               );
 
             services.AddControllersWithViews();
      

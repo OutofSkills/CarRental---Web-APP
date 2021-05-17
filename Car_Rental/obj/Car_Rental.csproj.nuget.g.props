@@ -25,5 +25,6 @@
     <PkgMicrosoft_Net_Compilers Condition=" '$(PkgMicrosoft_Net_Compilers)' == '' ">C:\Users\kojoc\.nuget\packages\microsoft.net.compilers\3.9.0</PkgMicrosoft_Net_Compilers>
     <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\kojoc\.nuget\packages\jquery\1.8.0</PkgjQuery>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\kojoc\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.13</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgFontAwesome Condition=" '$(PkgFontAwesome)' == '' ">C:\Users\kojoc\.nuget\packages\fontawesome\4.7.0</PkgFontAwesome>
   </PropertyGroup>
 </Project>
