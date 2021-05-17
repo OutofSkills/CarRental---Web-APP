@@ -90,7 +90,6 @@ namespace Car_Rental.Controllers
             return View(reservation);
         }
 
-        [Authorize]
         public async Task<IActionResult> ViewReservationsAsync()
         {
             var claims = User.Claims.ToList();
